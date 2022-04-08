@@ -91,7 +91,8 @@ body {
     }
 
 @media screen and (min-width: 600px) {
-.grid-container {
+    .grid-container {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
+    }
 }

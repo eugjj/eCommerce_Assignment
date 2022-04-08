@@ -59,7 +59,7 @@ namespace eCommence_Assignment
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            DB db = new DB(dbContext);
+            // DB db = new DB(dbContext);
 
             if (!dbContext.Database.CanConnect())
             {
@@ -69,7 +69,7 @@ namespace eCommence_Assignment
 
                 
                 //Reserve below to place seeding methods for Database
-                db.SeedProducts();
+                // db.SeedProducts();
                 //users seed
                 //session add
             }
