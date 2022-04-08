@@ -8,11 +8,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace eCommence_Assignment.Controllers
 {
-    public class ProductController : Controller
+    public class ProductGalleryController : Controller
     {
         private readonly DBContext db;
 
-        public ProductController(DBContext db)
+        public ProductGalleryController(DBContext db)
         {
             this.db = db;
         }

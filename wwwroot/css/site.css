@@ -69,3 +69,29 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+/* Product gallery styles
+---------------------------------------------------*/
+.item {
+    display: block;
+    width: 100%;
+    padding: 50px;
+    border: none;
+    margin-bottom: 3px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+    background: #F5F5F5;
+    color: #000;
+}
+
+.item:nth-of-type(even) {
+        background: #F8F8F8;
+    }
+
+@media screen and (min-width: 600px) {
+.grid-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+}
