@@ -26,7 +26,7 @@ namespace eCommence_Assignment.Models
         [Required]
         public string Brand { get; set; }
 
-        public virtual Category ProductCategory { get; set; }
+        public virtual ProdctCategory CategoryName { get; set; }
 
 
     }

@@ -1,15 +1,17 @@
-using eCommence_Assignment.Models;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using eCommence_Assignment.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace eCommence_Assignment
 {
@@ -57,15 +59,26 @@ namespace eCommence_Assignment
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
+            DB db = new DB(dbContext);
+
             if (!dbContext.Database.CanConnect())
             {
                 // ensure that database has been created
                 // before moving pass this line
-                dbContext.Database.EnsureCreated();//if not have,create new table automatically
+                dbContext.Database.EnsureCreated(); //if not have,create new table automatically
+
+                
+                //Reserve below to place seeding methods for Database
+                db.SeedProducts();
+                //users seed
+                //session add
             }
+
+
+            
+
         }
     }
 }
 
-//hihi testtest
-//this is serious work no testing allowed!! :))
+

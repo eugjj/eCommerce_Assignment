@@ -11,8 +11,6 @@ namespace eCommence_Assignment.Controllers
 {
     public class HomeController : Controller
     {
-
-        // test
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)

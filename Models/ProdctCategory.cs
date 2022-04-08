@@ -3,9 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace eCommence_Assignment.Models
 {
-    public class Category
+    public class ProdctCategory
     {
-        public Category()
+        public ProdctCategory()
         {
             Id = new Guid();
         }

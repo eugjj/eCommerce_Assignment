@@ -12,7 +12,7 @@ namespace eCommence_Assignment.Models
         protected override void OnModelCreating(ModelBuilder model)
         {
         }
-        public DbSet<Category> Categories { get; set; }
+        public DbSet<ProdctCategory> Categories { get; set; }
         public DbSet<Products> Products { get; set; }
     }
 }
