@@ -25,6 +25,15 @@
     </tr>
 </table>*@
 
+
+<div>
+    <form action="/ProductGallery/Search" method="post">
+        <input type="text" name="search" placeholder="Search" />
+        <button type="submit">Search</button>
+    </form>
+    
+</div>
+<br />
 <div>
     <table>
         @for (int i = 0; i < products.Count; i++)
