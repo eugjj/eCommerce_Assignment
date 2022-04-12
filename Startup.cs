@@ -12,6 +12,7 @@ using eCommence_Assignment.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using eCommence_Assignment.Data;
 
 namespace eCommence_Assignment
 {
@@ -56,7 +57,7 @@ namespace eCommence_Assignment
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=ProductGallery}/{action=Index}/{id?}");
             });
 
             // DB db = new DB(dbContext);
@@ -67,9 +68,10 @@ namespace eCommence_Assignment
                 // before moving pass this line
                 dbContext.Database.EnsureCreated(); //if not have,create new table automatically
 
-                
+
                 //Reserve below to place seeding methods for Database
-                // db.SeedProducts();
+                ProductDB db = new ProductDB(dbContext);
+                db.SeedProducts();
                 //users seed
                 //session add
             }
