@@ -1,7 +1,18 @@
-﻿
+﻿@model eCommence_Assignment.Models.Products
 @{
-
+    ViewBag.Title = "Home Page";
 }
+
+<h3>Hello, Apple</h3>
+
+<div class=" container">
+    <div class="col-md-6">
+        <div class="form-group">
+            Search For Products :
+            @Html.TextBoxFor(expression:model => model.Name, htmlAttributes:new{@class = "form-control" })
+        </div>
+    </div>
+</div>
 
 <div class="grid-container">
   <div class="item"> 1</div>
