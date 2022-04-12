@@ -19,6 +19,11 @@
     font-weight: bold;
 }
 
+.img {
+    max-width: 95%;
+    height: auto;
+}
+
 .item {
     display: block;
     width: 100%;
@@ -83,7 +88,7 @@
             var brand = SearchHighlight(search, p.Brand);
 
             <div class='item'>
-                <img class="img" src="~/@p.ImageUrl">
+                <img class="img" src="@p.ImageUrl">
                 <p class='productName'>@Html.Raw(name)   [@Html.Raw(brand)]</p>
                 <p class='productDesc'>@Html.Raw(desc)</p>
                 <p class='productPrice'>$@p.Price</p>
