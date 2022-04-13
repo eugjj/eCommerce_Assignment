@@ -28,6 +28,8 @@ namespace eCommence_Assignment.Models
 
         public virtual ProdctCategory CategoryName { get; set; }
 
+        // icollection productkey
+
 
     }
 }
