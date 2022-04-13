@@ -92,8 +92,8 @@
                 <p class='productName'>@Html.Raw(name)   [@Html.Raw(brand)]</p>
                 <p class='productDesc'>@Html.Raw(desc)</p>
                 <p class='productPrice'>$@p.Price</p>
-                <form action="/ProductGalley/AddtoCart" class="addCart" method="post">
-                    <input type="submit" value="Add to Cart" name="addCart" id="addCart">
+                <form action="/ProductGallery/AddtoCart" class="addCart" method="post">
+                    <input type="submit" value="Add to Cart" name="productName">
                 </form>
             </div>
         }

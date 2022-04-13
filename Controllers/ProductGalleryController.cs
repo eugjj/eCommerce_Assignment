@@ -55,7 +55,7 @@ namespace eCommence_Assignment.Controllers
             return View("Index");
         }
 
-        public IActionResult AddtoCart()
+        public IActionResult AddtoCart(string productName)
         {
             
             
