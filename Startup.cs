@@ -72,6 +72,8 @@ namespace eCommence_Assignment
                 db.SeedProducts();
                 //users seed
                 //session add
+
+                db.Seed();
             }
 
 

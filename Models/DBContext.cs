@@ -9,9 +9,17 @@ namespace eCommence_Assignment.Models
             : base(options)
         {
         }
+
+
+
         protected override void OnModelCreating(ModelBuilder model)
         {
         }
+
+        public DbSet<User> Users { get; set; }
+
+        public DbSet<Session> Sessions { get; set; }
+
         public DbSet<ProdctCategory> Categories { get; set; }
         public DbSet<Products> Products { get; set; }
     }

@@ -1,4 +1,5 @@
 ﻿using eCommence_Assignment.Models;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,15 +12,26 @@ namespace eCommence_Assignment.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IWebHostEnvironment env;
+        private readonly DBContext dbContext;
 
-        public HomeController(ILogger<HomeController> logger)
+       
+
+        public HomeController (IWebHostEnvironment env, DBContext dbContext)
         {
-            _logger = logger;
+            this.env=env;
+            this.dbContext = dbContext;
         }
 
         public IActionResult Index()
         {
+            Session session = ValidateSession();
+            if (session == null)
+            {
+                // no session; bring user to Login page
+                return RedirectToAction("Index", "Login");
+            }
+
             return View();
         }
 
@@ -28,10 +40,30 @@ namespace eCommence_Assignment.Controllers
             return View();
         }
 
+        
+
+        private Session ValidateSession()
+        {
+            // check if there is a SessionId cookie
+            if (Request.Cookies["SessionId"] == null)
+            {
+                return null;
+            }
+
+            // convert into a Guid type (from a string type)
+            Guid sessionId = Guid.Parse(Request.Cookies["SessionId"]);
+            Session session = dbContext.Sessions.FirstOrDefault(x =>
+                x.Id == sessionId
+            );
+
+            return session;
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
     }
 }
