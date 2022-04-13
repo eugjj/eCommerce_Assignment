@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 //Possibly move to another class or controller during combination
 namespace eCommence_Assignment.Controllers
-{
+{/*
     public class PurchasePageController : Controller
     {
         private readonly DBContext db;
@@ -60,4 +60,5 @@ namespace eCommence_Assignment.Controllers
             return RedirectToAction("Index", "ViewPurchase");
             //Method can be called to convert unix time to string format for display in view
             
-    }
+    */
+}

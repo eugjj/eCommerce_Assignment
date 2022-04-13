@@ -1,5 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace eCommence_Assignment.Models
 {
@@ -27,6 +29,8 @@ namespace eCommence_Assignment.Models
         public string Brand { get; set; }
 
         public virtual ProdctCategory CategoryName { get; set; }
+
+        // icollection productkey
 
 
     }

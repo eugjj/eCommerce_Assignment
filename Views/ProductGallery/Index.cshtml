@@ -1,23 +1,131 @@
-﻿@model eCommence_Assignment.Models.Products
-@{
-    ViewBag.Title = "Home Page";
+﻿@{
+    List<Products> products = (List<Products>)ViewData["data"];
+    string search = (string)ViewData["search"];
 }
 
-<h3>Hello, ...</h3>
+<style>
+        /* Product gallery styles
+---------------------------------------------------*/
+.searchBar {
+    padding: 10px;
+}
 
-<div class=" container">
-    <div class="col-md-6">
-        <div class="form-group">
-            Search For Products :
-            @Html.TextBoxFor(expression:model => model.Name, htmlAttributes:new{@class = "form-control" })
-        </div>
-    </div>
+    .searchBar:focus {
+        background: #C7ECFD;
+    }
+
+.searchHi {
+    background-color: #AEE4FC;
+    font-weight: bold;
+}
+
+.img {
+    max-width: 95%;
+    height: auto;
+}
+
+.item {
+    display: block;
+    width: 100%;
+    padding: 60px;
+    border: none;
+    margin-bottom: 2px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+    background: #F5F5F5;
+    color: #000;
+}
+
+    .item:hover {
+        border: 2px solid #29b6f6
+    }
+
+.productPrice {
+    font-weight: bold;
+    color: #29b6f6;
+    font-size: 120%;
+}
+
+.productName {
+    font-weight: bold;
+    font-family: Arial;
+    font-size: 110%;
+}
+
+.productDesc {
+    font-weight: lighter;
+}
+
+.item:nth-of-type(even) {
+    background: #F8F8F8;
+}
+
+/* media screen and (min-width: 700px) {*/
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+</style>
+
+<div class='searchBar'>
+    <form action="/ProductGallery/Search" method="post">
+        <input type="text" name="search" placeholder="Search in eStore" />
+        <button type="submit">Search</button>
+    </form>
 </div>
 
-<div class="grid-container">
-  <div class="item"> 1</div>
-  <div class="item"> 2</div>
-  <div class="item"> 3</div>
-  <div class="item"> 4</div>
-  <div class="item"> 4</div>
-</div>
+<section class='grid-container'>
+    @{
+        foreach (Products p in products)
+        {
+            var name = SearchHighlight(search, p.Name);
+            var desc = SearchHighlight(search, p.Description);
+            var brand = SearchHighlight(search, p.Brand);
+
+            <div class='item'>
+                <img class="img" src="@p.ImageUrl">
+                <p class='productName'>@Html.Raw(name)   [@Html.Raw(brand)]</p>
+                <p class='productDesc'>@Html.Raw(desc)</p>
+                <p class='productPrice'>$@p.Price</p>
+                <form action="/ProductGallery/AddtoCart" class="addCart" method="post">
+                    <input type="submit" value="Add to Cart" name="productName">
+                </form>
+            </div>
+        }
+    }
+</section>
+
+@functions{
+    public string SearchHighlight(string search, string data)
+    {
+        if (search == null)
+            {
+                search = "";
+            }
+
+        int pos = data.ToLower().IndexOf(search.ToLower());
+        if (pos == -1)
+        {
+            return data;
+        }
+        if (pos == 0)
+        {
+            return "<span class='searchHi'>" +
+            data.Substring(0, search.Length) + "</span>" +
+            data.Substring(search.Length);
+        }
+        else
+        {
+            return data.Substring(0, pos) +
+            "<span class='searchHi'>" + data.Substring(pos, search.Length) + "</span>" +
+            data.Substring(pos + search.Length);
+        }
+    }
+}
+
+

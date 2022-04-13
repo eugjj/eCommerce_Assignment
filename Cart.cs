@@ -1,8 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using eCommence_Assignment.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace MvcApplication1.Models
-{
+{/*
     public class Cart
     {
         private List<CartLine> lineCollection = new List<CartLine>();
@@ -54,5 +58,5 @@ namespace MvcApplication1.Models
         {
             get { return lineCollection; }
         }
-    }
+    }*/
 }

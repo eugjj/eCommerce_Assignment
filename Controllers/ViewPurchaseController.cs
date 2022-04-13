@@ -6,7 +6,7 @@ using eCommence_Assignment.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eCommence_Assignment.Controllers
-{
+{/*
     public class PurchasePageController : Controller
     {
         private readonly DBContext db;
@@ -39,4 +39,4 @@ namespace eCommence_Assignment.Controllers
                 DateTime dateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
                 dateTime = dateTime.AddSeconds(unixTimeStamp).ToLocalTime();
                 return dateTime.ToString();
-            }
+            */}

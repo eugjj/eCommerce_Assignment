@@ -1,5 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace eCommence_Assignment.Models
 {
@@ -16,6 +18,6 @@ namespace eCommence_Assignment.Models
         // timestamp to be used for show user date of purchase
         public long CreateTimestamp { get; set; }
         public virtual ICollection<Products> Products { get; set; }
-        public virtual ICollection<Users> User { get; set; }
+        public virtual ICollection<User> User { get; set; }
     }
 }

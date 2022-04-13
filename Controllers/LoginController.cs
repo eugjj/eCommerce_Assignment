@@ -34,7 +34,7 @@ namespace eCommence_Assignment.Controllers
                 }
 
               
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "ProductGallery");
             }
 
             
@@ -72,7 +72,7 @@ namespace eCommence_Assignment.Controllers
             Response.Cookies.Append("SessionId", session.Id.ToString());
             Response.Cookies.Append("Username", user.Username);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "ProductGallery");
         }
     }
 }

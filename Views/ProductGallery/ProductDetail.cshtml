@@ -1,0 +1,12 @@
+﻿@*
+    Add AddToCart button below
+*@
+@{
+    Products p = (Products)ViewData["product"];
+}
+
+<p>
+    <img src="@p.ImageUrl" height="240" width="240"/>
+    <span>@p.Name</span><br />
+    <span>@p.Description</span>
+</p>

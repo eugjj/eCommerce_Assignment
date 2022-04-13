@@ -22,7 +22,7 @@ namespace eCommence_Assignment.Data
             {
                 Name = "Microsoft 365 Family Basic",
                 Price = 128,
-                ImageUrl = "/wwwroot/images/m365_family.png",
+                ImageUrl = "/images/m365_family.png",
                 Description = "Create inspiring documents with smart assistance features in Word, Excel & PowerPoint​",
                 Brand = "Microsoft"
             });
@@ -30,7 +30,7 @@ namespace eCommence_Assignment.Data
             {
                 Name = "Microsoft 365 Business",
                 Price = 218,
-                ImageUrl = "/wwwroot/images/m365_business.png",
+                ImageUrl = "/images/m365_business.png",
                 Description = "Create inspiring documents with smart assistance features in Word, Excel, PowerPoint​ and email support with Outlook",
                 Brand = "Microsoft"
             });
@@ -38,7 +38,7 @@ namespace eCommence_Assignment.Data
             {
                 Name = "ASP.Net Core",
                 Price = 39,
-                ImageUrl = "/wwwroot/images/netcore.png",
+                ImageUrl = "/images/netcore.png",
                 Description = "An open-source, managed computer software framework for Windows, Linux, and macOS operating systems",
                 Brand = "Microsoft"
             });
@@ -46,7 +46,7 @@ namespace eCommence_Assignment.Data
             {
                 Name = "ASP.Net Framework",
                 Price = 29,
-                ImageUrl = "/wwwroot/images/netframework.png",
+                ImageUrl = "/images/netframework.png",
                 Description = "A proprietary software framework developed by Microsoft that runs primarily on Windows",
                 Brand = "Microsoft"
             });
@@ -54,7 +54,7 @@ namespace eCommence_Assignment.Data
             {
                 Name = "SQL Server Management Studio",
                 Price = 49,
-                ImageUrl = "/wwwroot/images/sql.png",
+                ImageUrl = "/images/sql.png",
                 Description = "Configure, managage, and administer all database components within Microsoft SQL Server",
                 Brand = "Microsoft"
             });
@@ -62,7 +62,7 @@ namespace eCommence_Assignment.Data
             {
                 Name = "Acrobat DC Pro",
                 Price = 148,
-                ImageUrl = "/wwwroot/images/acrobat.jpg",
+                ImageUrl = "/images/acrobat.jpg",
                 Description = "All you need to convert, sign, edit & manage PDF documents on any device",
                 Brand = "Adobe"
             });
@@ -70,7 +70,7 @@ namespace eCommence_Assignment.Data
             {
                 Name = "Adobe Photoshop",
                 Price = 320,
-                ImageUrl = "/wwwroot/images/photoshop.jpg",
+                ImageUrl = "/images/photoshop.jpg",
                 Description = "From social posts to photo retouching, banners to beautiful websites, everyday image edits to total transformations",
                 Brand = "Adobe"
             });
@@ -78,7 +78,7 @@ namespace eCommence_Assignment.Data
             {
                 Name = "Flutter SDK",
                 Price = 29,
-                ImageUrl = "/wwwroot/images/flutter.png",
+                ImageUrl = "/images/flutter.png",
                 Description = "Develop cross platform applications for Android, iOS, Linux, macOS, Windows and the web from a single codebase",
                 Brand = "Google"
             });
@@ -86,7 +86,7 @@ namespace eCommence_Assignment.Data
             {
                 Name = "Xcode",
                 Price = 18,
-                ImageUrl = "/wwwroot/images/xcode.png",
+                ImageUrl = "/images/xcode.png",
                 Description = "Apple's integrated development environment for macOS, used to develop software for macOS and iOS",
                 Brand = "Apple"
             });
