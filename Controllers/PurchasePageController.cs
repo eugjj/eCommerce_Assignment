@@ -16,36 +16,48 @@ namespace eCommence_Assignment.Controllers
         {
             this.db = db;
         }
-        //when confirm purchase is executed
-        public IActionResult GenerateKey()
+        public IActionResult Index()
         {
-            // to be retrieved from codes in LoginController
-            string user = placeholder;
-            //to be retrieved from codes in AddToCartController
-            string product = placeholder;
-            // generate a random string upon successful purchase
-            string key = Guid.NewGuid().ToString();
+            Session session = db.Sessions.FirstOrDefault(x => x.Id ==
+              Request.Cookies["sessionId"]);
 
-            // generate ProductKey into our database with timestamp, may use foreach loop depending on products added to cart
-            
-            dbContext.ProductKeys.Add(new ProductKey
+            //check for login status, redirect to login page if login not performed 
+            if (session == null)
             {
-                PKey = key,
-                CreateTimestamp = DateTimeOffset.Now.ToUnixTimeSeconds(),
-                User = user
-                Products = product
-            });
+                return RedirectToAction("Index", "Login");
+            }
+
+            else
+            {
+                GenerateKey(Products product);
+                //should include housekeeping of the cart entity
+            }
+
+                //when confirm purchase is executed
+                public static void GenerateKey(Products product)
+        {
+            string user = session.user;
+                foreach (Products product in cart)
+                {
+                    string pName = product.name;
+                    // generate a random string upon successful purchase
+                    string key = Guid.NewGuid().ToString();
+                    // generate ProductKey into our database with timestamp            
+                    dbContext.ProductKeys.Add(new ProductKey
+                    {
+                        PKey = key,
+                        CreateTimestamp = DateTimeOffset.Now.ToUnixTimeSeconds(),
+                        User = user
+                        Products = pName
+                    });
+                }
             dbContext.SaveChanges();    
 
-            ViewData["key"] = key;
+            // ViewData["key"] = key;
             // ViewData["doP"] = time;
-            return View();
+            
         }
-        //Method can be called to convert unix time to string format for display in view
-        public static string UnixTimeStampToDateTime(long unixTimeStamp)
-        {
-            DateTime dateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
-            dateTime = dateTime.AddSeconds(unixTimeStamp).ToLocalTime();
-            return dateTime.ToString();
-        }
+            return RedirectToAction("Index", "ViewPurchase");
+            //Method can be called to convert unix time to string format for display in view
+            
     }
