@@ -20,6 +20,7 @@ namespace eCommence_Assignment.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
+            
             List<Products> test = db.Products.ToList();
             ViewData["data"] = test;
 

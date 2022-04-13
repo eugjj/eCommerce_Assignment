@@ -17,10 +17,8 @@ namespace eCommence_Assignment.Models
 
         public Guid Id { get; set; }
 
-        [Required]
         public string Username { get; set; }
 
-        [Required]
         public byte[] PassHash { get; set; }
 
        
