@@ -29,26 +29,23 @@ namespace eCommence_Assignment
 
             string[] usernames = { "Eugene", "JianRui" };
 
-            string password = "secretLover";
+            string[] passwords = { "cat", "hamster" };
 
-            foreach (string username in usernames)
+            for (int i = 0; i < usernames.Length; i++)
             {
-                string combo = username + password;
+                string combo = usernames[i] + passwords[i];
                 byte[] hash = sha.ComputeHash(Encoding.UTF8.GetBytes(combo));
 
 
                 dbContext.Add(new User
                 {
-                    Username = username,
+                    Username = usernames[i],
                     PassHash = hash
                 });
 
                 dbContext.SaveChanges();
-            }   
+            }
 
-        }  
-
-
-
+        }
     }
 }
