@@ -7,50 +7,76 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
-<body margin="15px">
+
+@*<style>
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(1fr, 1fr, 1fr);
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .item {
+        display: block;
+        width: 100%;
+        padding: 60px;
+        border: none;
+        margin-bottom: 2px;
+        box-sizing: border-box;
+        font-size: 1rem;
+        text-align: center;
+        text-decoration: none;
+        background: #F5F5F5;
+        color: #000;
+    }
+</style>*@
+
+
+<body margin="10px">
+    @*<section class='grid-container'>*@
     <div class="container">
         <main role="main" class="pb-3">
             <div style="height:70px;">
                 <div class="container">
-                    @if (ViewData["username"] == null)
+                    @if (Context.Request.Cookies["username"] == null)
                     {
                         <div class="hello">Hello, Guest</div>
-                        <div class="navbar">
-                            <a class="@ViewData["Home"] placeholder" asp-area="" asp-controller="Home" asp-action="Index" style="text-decoration: underline">Home</a>
+                        <div class="item">
+                            <a class="@ViewData["Home"]" asp-area="" asp-controller="Home" asp-action="Index" style="text-decoration: underline">Home</a>
                             &nbsp;|&nbsp;
                             <a class="@ViewData["Login"]" asp-area="" asp-controller="Login" asp-action="Index" style="text-decoration: underline">Login</a>
-                        </div> 
-                        
-                     }
-                    
-                     else
-                     {
-                        <div class="hello" id="hellouser"> Hello, @ViewData["username"]</div>
-                        <div class="navbar">
+                        </div>
+
+                    }
+
+                    else
+                    {
+                        <div class="hello" id="hellouser"> Hello, @Context.Request.Cookies["username"]</div>
+                        <div class="item">
                             <a class="@ViewData["Home"]" asp-area="" asp-controller="Home" asp-action="Index" style="text-decoration: underline;">Home</a>
                             &nbsp;|&nbsp;
                             <a class="@ViewData["My Purchases"]" asp-area="" asp-controller="MyPurchases" asp-action="Index" style="text-decoration: underline;">My Purchases</a>
-                             &nbsp;|&nbsp;
-                             <a class="@ViewData["Login"]" asp-area="" asp-controller="Logout" asp-action="Index" style="text-decoration: underline;">Logout</a>
+                            &nbsp;|&nbsp;
+                            <a class="@ViewData["Login"]" asp-area="" asp-controller="Logout" asp-action="Index" style="text-decoration: underline;">Logout</a>
 
                         </div>
-                     }
+                    }
 
 
                 </div>
             </div>
             @RenderBody()
         </main>
+    @*</section>*@
     </div>
 
-            <footer class="border-top footer text-muted">
-                <div class="container">
-                    &copy; 2022 - SA54 Team 7 ASP.NET Core CA
-                </div>
-            </footer>
-            <script src="~/lib/jquery/dist/jquery.min.js"></script>
-            <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-            <script src="~/js/site.js" asp-append-version="true"></script>
-            @RenderSection("Scripts", required: false)
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2022 - SA54 Team 7 ASP.NET Core CA
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
 </body>
 </html>
