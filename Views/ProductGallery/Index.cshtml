@@ -89,7 +89,7 @@
 
             <div class='item'>
                 <img class="img" src="@p.ImageUrl">
-                <p class='productName'>@Html.Raw(name)   [@Html.Raw(brand)]</p>
+                <p class='productName'>@Html.Raw(name)   <i>[@Html.Raw(brand)]</i></p>
                 <p class='productDesc'>@Html.Raw(desc)</p>
                 <p class='productPrice'>$@p.Price</p>
                 <form action="/ProductGallery/AddtoCart" class="addCart" method="post">

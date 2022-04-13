@@ -22,7 +22,6 @@ namespace eCommence_Assignment.Models
        
         public virtual User User { get; set; }
 
-        public virtual Guest guest { get; set; }
     }
 }
 

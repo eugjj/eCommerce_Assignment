@@ -32,7 +32,6 @@
 
 
 <body margin="10px">
-    @*<section class='grid-container'>*@
     <div class="container">
         <main role="main" class="pb-3">
             <div style="height:70px;">
@@ -40,7 +39,7 @@
                     @if (Context.Request.Cookies["username"] == null)
                     {
                         <div class="hello">Hello, Guest</div>
-                        <div class="item">
+                        <div class="topbar">
                             <a class="@ViewData["Home"]" asp-area="" asp-controller="Home" asp-action="Index" style="text-decoration: underline">Home</a>
                             &nbsp;|&nbsp;
                             <a class="@ViewData["Login"]" asp-area="" asp-controller="Login" asp-action="Index" style="text-decoration: underline">Login</a>
@@ -51,7 +50,7 @@
                     else
                     {
                         <div class="hello" id="hellouser"> Hello, @Context.Request.Cookies["username"]</div>
-                        <div class="item">
+                        <div class="topbar">
                             <a class="@ViewData["Home"]" asp-area="" asp-controller="Home" asp-action="Index" style="text-decoration: underline;">Home</a>
                             &nbsp;|&nbsp;
                             <a class="@ViewData["My Purchases"]" asp-area="" asp-controller="MyPurchases" asp-action="Index" style="text-decoration: underline;">My Purchases</a>
@@ -66,7 +65,6 @@
             </div>
             @RenderBody()
         </main>
-    @*</section>*@
     </div>
 
     <footer class="border-top footer text-muted">
