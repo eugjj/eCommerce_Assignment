@@ -56,29 +56,11 @@ namespace eCommence_Assignment.Controllers
             return View("Index");
         }
 
-        [HttpPost]
-        public IActionResult AddtoCart(Guid id)
+        public IActionResult AddtoCart(string productName)
         {
-
-            db.Add(new Cart
-            {
-                ProductId = id
-            });
-            db.SaveChanges();
-
-            List<Cart> cart_items = db.Cart.ToList();
-
-            int count;
-            if (cart_items.Count > 0)
-            {
-                count = cart_items.Count;
-            }
-            else
-                count = 0;
-
-            ViewData["cart"] = count;
-            ViewData["data"] = db.Products.ToList();
-            return View("Index");
+            
+            
+            return View();
         }
     }
 }
