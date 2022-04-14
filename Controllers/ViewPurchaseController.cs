@@ -6,37 +6,38 @@ using eCommence_Assignment.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eCommence_Assignment.Controllers
-{/*
-    public class PurchasePageController : Controller
+{
+    public class ViewPurchaseController : Controller
     {
         private readonly DBContext db;
 
-        public PurchasePageController(DBContext db)
+        public ViewPurchaseController(DBContext db)
         {
             this.db = db;
         }
         public IActionResult Index()
         {
-            Session session = db.Sessions.FirstOrDefault(x => x.Id ==
-            Request.Cookies["sessionId"]);
-
-            if (session == null)
+            string userName = Request.Cookies["Username"];
+            if (userName == null)                
             {
                 return RedirectToAction("Index", "Login");
             }
-
             else
             {
-                List<ProductKey> showPurchase = 
-                    dbContext.ProductKeys.Where(x => x.user = session.user).ToList();
-                ViewData["key"] = showPurchase.key;
-                ViewData["DateOfPurchase"] = UnixToDateTime(showPurchase.CreateTimeStamp);
-                ViewData["product"] = showPurchase.product;
+                List<ProductKey> showPurchase =
+                    db.ProductKeys.Where(x => x.Users == userName).ToList();
+                
+                ViewData["showPurchase"] = showPurchase;                
             }
-
+            return View();
+        }
+            //Method can be called to convert unix time to string format for display in view
             public static string UnixToDateTime(long unixTimeStamp)
             {
                 DateTime dateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
                 dateTime = dateTime.AddSeconds(unixTimeStamp).ToLocalTime();
                 return dateTime.ToString();
-            */}
+            }
+        
+    }
+}
