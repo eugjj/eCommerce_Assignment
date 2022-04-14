@@ -60,7 +60,7 @@ namespace eCommence_Assignment
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Login}/{action=Index}/{id?}");
+                    pattern: "{controller=ProductGallery}/{action=Index}/{id?}");
             });
 
             
