@@ -17,7 +17,9 @@ namespace eCommence_Assignment.Models
         public string PKey { get; set; }
         // timestamp to be used for show user date of purchase
         public long CreateTimestamp { get; set; }
-        public virtual ICollection<Products> Products { get; set; }
-        public virtual ICollection<User> User { get; set; }
+        public string Users { get; set; }
+        public string Products { get; set; }
+        //public virtual ICollection<Products> Products { get; set; }
+        //public virtual ICollection<User> Users { get; set; }
     }
 }
