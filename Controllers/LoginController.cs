@@ -63,7 +63,8 @@ namespace eCommence_Assignment.Controllers
            
             Session session = new Session()
             {
-                User = user
+                User = user,
+                UserId = user.Id
             };
             dbContext.Sessions.Add(session);
             dbContext.SaveChanges();
