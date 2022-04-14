@@ -8,27 +8,19 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 
-@*<style>
-    .grid-container {
-        display: grid;
-        grid-template-columns: repeat(1fr, 1fr, 1fr);
-        margin-left: auto;
-        margin-right: auto;
+<style>
+    .hello {
+        font-size: 150%;
     }
-    .item {
-        display: block;
-        width: 100%;
-        padding: 60px;
-        border: none;
-        margin-bottom: 2px;
-        box-sizing: border-box;
-        font-size: 1rem;
-        text-align: center;
-        text-decoration: none;
-        background: #F5F5F5;
-        color: #000;
+
+    .topbar {
+        font-size: 110%;
     }
-</style>*@
+    
+    .container {
+        padding-top: 10px;
+    }
+</style>
 
 
 <body margin="10px">
@@ -42,7 +34,7 @@
                         <div class="topbar">
                             <a class="@ViewData["Home"]" asp-area="" asp-controller="ProductGallery" asp-action="Index" style="text-decoration: underline">Home</a>
                             &nbsp;|&nbsp;
-                            <a class="@ViewData["Login"]" asp-area="" asp-controller="Login" asp-action="Index" style="text-decoration: underline">Login</a>
+                            <a class="@ViewData["Login"]" asp-area="" asp-controller="Login" asp-action="Index" style="text-decoration: underline" id="hide">Login</a>
                         </div>
 
                     }
