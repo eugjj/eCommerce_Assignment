@@ -1,5 +1,10 @@
 ﻿
-
+<style>
+    .errMsg {
+        color: red;
+        font-weight: bold;
+    }
+</style>
 
 <form id="form" action="/Login/Login" method="POST">
     <table>
@@ -27,12 +32,12 @@
                         <input id="password" type="password" name="password" class="form-control" style="width:100%;display:block;padding:6px 15px;box-sizing:border-box;" />
                         
                         <div colspan="2" algin="center">
-                            <div id=" error_Msg">@ViewData["errorMsg"]</div>
+                            <div class="errMsg">@ViewData["errorMsg"]</div>
 
                         </div>
                         <br />
                         
-                        <input type="submit" value="login" class="btn btn-primary " style=" padding:15px 39px; display:inline-block;width:100%; height:50%;" />
+                        <input type="submit" value="Login" class="btn btn-primary " style=" padding:15px 39px; display:inline-block;width:100%; height:50%;" />
                     </div>
                   
 
