@@ -25,7 +25,11 @@ namespace eCommence_Assignment.Middleware
             if (sessionId == null && newGuestId == null)
             {
                
-                User guest = new User { Id = Guid.NewGuid() };
+                User guest = new User 
+                { 
+                    Id = Guid.NewGuid(),
+                    Username = "Guest"
+                };
                 dbContext.Add(guest);
                 dbContext.SaveChanges();
 
