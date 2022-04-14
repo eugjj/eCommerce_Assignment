@@ -1,0 +1,29 @@
+﻿@{
+    List<ProductKey> showpurchase = (List<ProductKey>)ViewData["showPurchase"];
+}
+
+<section class='grid-container'>
+    @{
+        foreach (ProductKey Product in showpurchase)
+        {
+
+
+            <div class='item'>
+
+
+                <p class='Product'>@Product.Products</p>
+                <p class='Product'>@Product.PKey</p>
+                <p class='Product'>@UnixToDateTime(Product.CreateTimestamp)</p>
+
+            </div>
+        }
+    }
+</section>
+@functions{
+    public static string UnixToDateTime(long unixTimeStamp)
+    {
+        DateTime dateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+        dateTime = dateTime.AddSeconds(unixTimeStamp).ToLocalTime();
+        return dateTime.ToString();
+    }
+}

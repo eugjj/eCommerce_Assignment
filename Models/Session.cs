@@ -19,8 +19,9 @@ namespace eCommence_Assignment.Models
        
         public long Timestamp { get; set; }
 
-       
+        public Guid UserId { get; set; }
         public virtual User User { get; set; }
+
     }
 }
 

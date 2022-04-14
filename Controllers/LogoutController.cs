@@ -38,6 +38,8 @@ namespace eCommence_Assignment.Controllers
             Response.Cookies.Delete("SessionId");
             Response.Cookies.Delete("Username");
 
+
+
             return RedirectToAction("Index", "Login");
         }
     }

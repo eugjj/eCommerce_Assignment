@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using eCommence_Assignment.Data;
+using eCommence_Assignment.Middleware;
 
 namespace eCommence_Assignment
 {
@@ -53,11 +54,13 @@ namespace eCommence_Assignment
 
             app.UseAuthorization();
 
+            app.UseMiddleware<CreateGuest>();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Login}/{action=Index}/{id?}");
+                    pattern: "{controller=ProductGallery}/{action=Index}/{id?}");
             });
 
             
@@ -74,8 +77,8 @@ namespace eCommence_Assignment
                 db.SeedProducts();
                 //users seed
                 
-                DB dbb = new DB(dbContext);
-                dbb.Seed();
+                UserDB dbb = new UserDB(dbContext);
+                dbb.SeedUsers();
 
                 // session add
             }

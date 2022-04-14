@@ -8,19 +8,14 @@ using System.Threading.Tasks;
 
 namespace eCommence_Assignment
 {
-    public class DB
+    public class UserDB
     {
         private DBContext dbContext;
 
-        public DB(DBContext dbContext)
+        public UserDB(DBContext dbContext)
         {
             this.dbContext = dbContext;
 
-        }
-
-        public void Seed()
-        {
-            SeedUsers();
         }
 
         public void SeedUsers()

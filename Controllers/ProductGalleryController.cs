@@ -20,6 +20,7 @@ namespace eCommence_Assignment.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
+            
             List<Products> test = db.Products.ToList();
             ViewData["data"] = test;
 
@@ -55,11 +56,29 @@ namespace eCommence_Assignment.Controllers
             return View("Index");
         }
 
-        public IActionResult AddtoCart(string productName)
+        [HttpPost]
+        public IActionResult AddtoCart(Guid id)
         {
-            
-            
-            return View();
+
+            db.Add(new Cart
+            {
+                ProductId = id
+            });
+            db.SaveChanges();
+
+            List<Cart> cart_items = db.Cart.ToList();
+
+            int count;
+            if (cart_items.Count > 0)
+            {
+                count = cart_items.Count;
+            }
+            else
+                count = 0;
+
+            ViewData["cart"] = count;
+            ViewData["data"] = db.Products.ToList();
+            return View("Index");
         }
     }
 }

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 //Possibly move to another class or controller during combination
 namespace eCommence_Assignment.Controllers
-{/*
+{
     public class PurchasePageController : Controller
     {
         private readonly DBContext db;
@@ -18,47 +18,46 @@ namespace eCommence_Assignment.Controllers
         }
         public IActionResult Index()
         {
-            Session session = db.Sessions.FirstOrDefault(x => x.Id ==
-              Request.Cookies["sessionId"]);
+            List<string> myList = new List<string>();
+            myList.Add("MsWord");
+            myList.Add("MsExcel");
 
-            //check for login status, redirect to login page if login not performed 
-            if (session == null)
+            if (Request.Cookies["Username"] != null)
             {
-                return RedirectToAction("Index", "Login");
-            }
-
-            else
-            {
-                GenerateKey(Products product);
+                string user = Request.Cookies["Username"];
+                GenerateKey(myList, user);
+                db.SaveChanges();
                 //should include housekeeping of the cart entity
-            }
 
-                //when confirm purchase is executed
-                public static void GenerateKey(Products product)
+                return RedirectToAction("Index", "ViewPurchase");
+            }
+            else
+                return RedirectToAction("Index", "Login");
+        }
+
+        //when confirm purchase is executed
+        public void GenerateKey(List<string> products, string user)
         {
-            string user = session.user;
-                foreach (Products product in cart)
+            foreach (string product in products)
+            {
+                // generate a product key upon successful purchase
+                string key = Guid.NewGuid().ToString();
+                // generate ProductKey into our database with timestamp            
+                db.ProductKeys.Add(new ProductKey
                 {
-                    string pName = product.name;
-                    // generate a random string upon successful purchase
-                    string key = Guid.NewGuid().ToString();
-                    // generate ProductKey into our database with timestamp            
-                    dbContext.ProductKeys.Add(new ProductKey
-                    {
-                        PKey = key,
-                        CreateTimestamp = DateTimeOffset.Now.ToUnixTimeSeconds(),
-                        User = user
-                        Products = pName
-                    });
-                }
-            dbContext.SaveChanges();    
+                    PKey = key,
+                    CreateTimestamp = DateTimeOffset.Now.ToUnixTimeSeconds(),
+                    Users = user,
+                    Products = product
+                });
+            }
 
             // ViewData["key"] = key;
             // ViewData["doP"] = time;
-            
+
         }
-            return RedirectToAction("Index", "ViewPurchase");
-            //Method can be called to convert unix time to string format for display in view
-            
-    */
+
+
+
+    }
 }
