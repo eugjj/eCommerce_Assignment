@@ -19,7 +19,7 @@ namespace eCommence_Assignment.Middleware
         }
         public async Task Invoke(HttpContext context)
         {
-            string sessionId = context.Request.Cookies["sessionId"];
+            string sessionId = context.Request.Cookies["SessionId"];
             string newGuestId = context.Request.Cookies["guestId"];
 
             if (sessionId == null && newGuestId == null)
@@ -35,6 +35,7 @@ namespace eCommence_Assignment.Middleware
 
                 string guestId = guest.Id.ToString();
                 context.Response.Cookies.Append("guestId", guestId);
+                context.Response.Cookies.Append("Username", guest.Username);
             }
             await next(context);
         }

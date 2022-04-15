@@ -22,6 +22,8 @@ namespace eCommence_Assignment.Models
         [Required]
         public double ProductPrice { get; set; }
 
+        public string Username { get; set; }
+
         public virtual User User { get; set; }
     }
 }
