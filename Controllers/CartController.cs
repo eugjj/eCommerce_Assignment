@@ -55,20 +55,31 @@ namespace eCommence_Assignment.Controllers
         {
 
             //List<Cart> CartItem = dbContext.Cart.ToList();
-            List<Cart> a = dbContext.Cart.ToList();
+            List<Cart> allitemsInCart = dbContext.Cart.ToList();
             List<Products> products = new List<Products>();
-            foreach(Cart c in a)
+            List<int> qty = new List<int>();
+            
+            foreach(Cart cartitem in allitemsInCart)
             {
-                products.Add(dbContext.Products.FirstOrDefault(x => x.Id == c.ProductId));
+                var productitem = dbContext.Products.FirstOrDefault(x => x.Id == cartitem.ProductId);
+                if (products.Contains(productitem) == false)
+                {
+                    products.Add(productitem);
+                    qty.Add(cartitem.ProductQty);
+                }
+                else
+                {
+                    int lastQty = qty.Last();
+                    lastQty += cartitem.ProductQty;
+                }
             }
 
             //List<Cart> CartDetails = (List<Cart>)dbContext.Products.Where(x =>
             //x.Id == a.Id);
 
-
-
+            ViewData["cartQty"] = qty;
             ViewData["data"] = products;
-            ViewData["cartdetail"] = a;
+            ViewData["cartdetail"] = allitemsInCart;
 
             return View();
         }

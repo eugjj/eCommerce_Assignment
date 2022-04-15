@@ -3,7 +3,7 @@
     ViewData["Title"] = "Home Page";
     List<Cart> CurrentCart = (List<Cart>)ViewData["cartdetail"];
     List<Products> products = (List<Products>)ViewData["data"];
-
+    List<int> productQty = (List<int>)ViewData["cartQty"];
 }
 
 <style>
@@ -39,10 +39,12 @@
 </style>
 
 <section class="cart-grid">
-@{
-    
-    foreach (Products item in products)
-    {
+    @{
+        int i = 0;
+        foreach (Products item in products)
+        {
+            int qty = productQty[i];
+
         <div class='cart-item'>
             <table class="cart-table"><tr>
             <td><img class="cart-img" src="@item.ImageUrl"></td>
@@ -50,11 +52,12 @@
             <td class="cart-price"><p class='productPrice'>$@item.Price</p></td>
             <td class="cart-qty">
                 <form action="/Cart/ChangeQty" method="post">
-                    <input type="number" id="cart-qtychange" name="cartQty" min="0" max="10" placeholder="">
+                    <input type="number" id="cart-qtychange" name="cartQty" min="0" max="10" placeholder="@qty">
                     </form></td>
             </tr></table>
-        </div>
-    }
+            </div>
+            i++;
+        }
 }
 </section>
 
