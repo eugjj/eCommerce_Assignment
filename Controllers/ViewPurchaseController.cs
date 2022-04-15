@@ -32,12 +32,17 @@ namespace eCommence_Assignment.Controllers
             return View();
         }
             //Method can be called to convert unix time to string format for display in view
-            public static string UnixToDateTime(long unixTimeStamp)
+        public static string UnixToDateTime(long unixTimeStamp)
             {
                 DateTime dateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
                 dateTime = dateTime.AddSeconds(unixTimeStamp).ToLocalTime();
                 return dateTime.ToString();
             }
-        
+
+        // this method will check qty of a product in cartdetails db and update qty
+        public void UpdateProductQty(Products pName)
+        {
+            List<Cart> products = db.
+        }
     }
 }

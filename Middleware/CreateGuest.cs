@@ -17,7 +17,7 @@ namespace eCommence_Assignment.Middleware
         {
             this.next = next;
         }
-        public async Task Invoke(HttpContext context, [FromServices] DBContext dbContext)
+        public async Task Invoke(HttpContext context)
         {
             string sessionId = context.Request.Cookies["sessionId"];
             string newGuestId = context.Request.Cookies["guestId"];

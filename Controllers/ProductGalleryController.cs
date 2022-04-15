@@ -59,15 +59,28 @@ namespace eCommence_Assignment.Controllers
         [HttpPost]
         public IActionResult AddtoCart(Guid id)
         {
-
-            db.Add(new Cart
+            Products p = db.Products.FirstOrDefault(x => x.Id == id);
+            Cart productInCart = db.Cart.FirstOrDefault(x => x.ProductId == id);
+            
+            //if productId not in Cart then add new product (with qty 1), else update product qty
+            if (productInCart == null)
             {
-                ProductId = id
-            });
-            db.SaveChanges();
+                db.Add(new Cart
+                {
+                    ProductId = id,
+                    ProductPrice = p.Price,
+                    ProductQty = 1
+                });
+                db.SaveChanges();
+            }
+            else
+            {
+                productInCart.ProductQty++;
+                db.SaveChanges();
+            }
 
+            //count check for the top right total product qty number
             List<Cart> cart_items = db.Cart.ToList();
-
             int count;
             if (cart_items.Count > 0)
             {

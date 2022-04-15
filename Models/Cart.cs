@@ -16,9 +16,12 @@ namespace eCommence_Assignment.Models
         [Required]
         public Guid ProductId { get; set; }
 
-     
+        [Required]
+        public int ProductQty { get; set; }
+
+        [Required]
+        public double ProductPrice { get; set; }
 
         public virtual User User { get; set; }
-        public virtual ICollection<CartDetail> Collection { get; set; }
     }
 }
