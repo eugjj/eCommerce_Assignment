@@ -5,20 +5,58 @@
     List<Products> products = (List<Products>)ViewData["data"];
 
 }
-@{
 
+<style>
+    .cart-table {
+        table-layout: auto;
+        width: 100%;  
+        text-align: left;
+        font-size: 120%;
+    }
+    
+    .cart-item 
+    {
+        display: block;
+            width: 100%;
+            border-top: 2px solid #ace5ee;
+            margin-bottom: 2px;
+            box-sizing: border-box;
+            font-size: 1rem;
+            text-align: center;
+            text-decoration: none;
+            background: #F5F5F5;
+            color: #000;
+    }
+        
+    .cart-item:nth-of-type(even) {
+            background: #F8F8F8;
+        }
+
+    .cart-img {
+        width: 200px;
+        
+    }
+</style>
+
+<section class="cart-grid">
+@{
+    
     foreach (Products item in products)
     {
-        <div class='item'>
-            @*<img class="img" src="@item.Products.ImageUrl">*@
-            <p class='productName'>@item.Name   </p>
-            <p class='productPrice'>$@item.Price</p>
-            <form action="/ProductGallery/AddtoCart/@item.Id" class="addCart" method="post">
-                <input type="submit" value="Add to Cart" name="productName">
-            </form>
+        <div class='cart-item'>
+            <table class="cart-table"><tr>
+            <td><img class="cart-img" src="@item.ImageUrl"></td>
+            <td class="cart-name"><p class='productName'>@item.Name   </p></td>
+            <td class="cart-price"><p class='productPrice'>$@item.Price</p></td>
+            <td class="cart-qty">
+                <form action="/Cart/ChangeQty" method="post">
+                    <input type="number" id="cart-qtychange" name="cartQty" min="0" max="10" placeholder="">
+                    </form></td>
+            </tr></table>
         </div>
     }
 }
+</section>
 
 @{
     if (CurrentCart == null)
