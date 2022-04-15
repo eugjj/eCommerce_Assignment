@@ -71,6 +71,7 @@ namespace eCommence_Assignment.Controllers
                     ProductId = id,
                     ProductPrice = p.Price,
                     ProductQty = 1,
+                     
                 });
                 db.SaveChanges();
             }

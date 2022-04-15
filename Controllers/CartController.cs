@@ -1,145 +1,72 @@
 ﻿using eCommence_Assignment.Models;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 using System.Threading.Tasks;
-/*
+
 namespace eCommence_Assignment.Controllers
 {
 
     public class CartController : Controller
     {
-        private readonly Database db;
+        private readonly DBContext dbContext;
 
-        public CartController(Database db)
+        public CartController(DBContext dbContext)
         {
-            this.db = db;
+            this.dbContext = dbContext;
         }
 
+        /*            Session SessionId = dbContext.Sessions.FirstOrDefault(x => x.Id == Request.Cookies["sessionId"]);
+                    User guestUser = dbContext.Users.FirstOrDefault(x => x.Id == Request.Cookies["guestId"]);*//*
+                    string sessionId = context.Request.Cookies["sessionId"];
+                    string newGuestId = context.Request.Cookies["guestId"];
+                    Cart existingCart = null;
+                    if ((sessionId != null || newGuestId != null) && !(sessionId != null && newGuestId != null))
+                    {
+                        //logged in user
+                        if (sessionId != null)
+                        {
+                            existingCart = dbContext.Cart.FirstOrDefault(x => (x.UserId == dbContext.Session.UserId));
+                            ViewData["username"] = dbContext.Session.User.Username;  //Pass the username 
+                        }
+                        //guest user
+                        else
+                        {
+                            existingCart = dbContext.Cart.FirstOrDefault(x => (x.UserId == newGuestId));
+
+                        }
+
+                        //cart exists
+                        if (existingCart != null)
+                        {
+                            List<CartDetail> cartDetails = dbContext.CartDetail.Where(x => x.CartId == existingCart.UserId).ToList();
+                            ViewData["cart"] = cartDetails;
+                        }
+
+                    }
+                    return View();
+                }*/
         public IActionResult Index()
         {
-            Session session = db.Sessions.FirstOrDefault(x => x.Id == Request.Cookies["sessionId"]);
-            User guestUser = db.Users.FirstOrDefault(x => x.Id == Request.Cookies["guestId"]);
-            Cart existingCart = null;
-            if ((session != null || guestUser != null) && !(session != null && guestUser != null))
-            {
-                //logged in user
-                if (session != null)
-                {
-                    existingCart = db.Carts.FirstOrDefault(x => (x.UserId == session.UserId));
-                    ViewData["username"] = session.User.Username;  //Pass the username 
-                }
-                //guest user
-                else
-                {
-                    existingCart = db.Carts.FirstOrDefault(x => (x.UserId == guestUser.Id));
 
-                }
+            //List<Cart> CartItem = dbContext.Cart.ToList();
+            List<Cart> a = dbContext.Cart.ToList();
+            
 
-                //cart exists
-                if (existingCart != null)
-                {
-                    List<CartDetail> cartDetails = db.CartDetails.Where(x => x.CartId == existingCart.Id).ToList();
-                    ViewData["cart"] = cartDetails;
-                }
+            //List<Cart> CartDetails = (List<Cart>)dbContext.Products.Where(x =>
+            //x.Id == a.Id);
 
-            }
+
+
+            ViewData["cartdetail"] = a;
+            //ViewData["cart"] = CartItem;
+
             return View();
-        }
-
-        [HttpPost]
-        public IActionResult UpdateQuantityInCart([FromBody] UpdateQuantityInput input)
-        {
-            Session session = db.Sessions.FirstOrDefault(x => x.Id == Request.Cookies["sessionId"]);
-            User guestUser = db.Users.FirstOrDefault(x => x.Id == Request.Cookies["guestId"]);
-            Cart existingCart = null;
-            if ((session != null || guestUser != null) && !(session != null && guestUser != null))
-            {
-                //logged in user
-                if (session != null)
-                {
-                    existingCart = db.Carts.FirstOrDefault(x => (x.UserId == session.UserId));
-                }
-                //guest user
-                else
-                {
-                    existingCart = db.Carts.FirstOrDefault(x => (x.UserId == guestUser.Id));
-
-                }
-            }
-            List<CartDetail> existingCartDetails = existingCart.CartDetails.ToList();
-            CartDetail cartDetailWithThisProduct = existingCartDetails.Find(x => x.ProductId == int.Parse(input.ProductId));
-
-            if (input.Plus)
-            {
-                cartDetailWithThisProduct.Quantity = cartDetailWithThisProduct.Quantity + 1;
-                db.SaveChanges();
-            }
-            else
-            {
-                if (cartDetailWithThisProduct.Quantity > 1)
-                {
-                    cartDetailWithThisProduct.Quantity = cartDetailWithThisProduct.Quantity - 1;
-                    db.SaveChanges();
-                }
-            }
-
-            double TotalPrice = 0.00;
-            foreach (CartDetail cd in existingCartDetails)
-            {
-                TotalPrice = TotalPrice + cd.Quantity * cd.Products.Price;
-            }
-
-            string pdtprice = $"${(cartDetailWithThisProduct.Products.Price*cartDetailWithThisProduct.Quantity):#,0.00}";
-            string totalprice = $"${TotalPrice:#,0.00}";
-
-            return Json(new { status = "success", productId = input.ProductId, price = pdtprice, quantity = cartDetailWithThisProduct.Quantity, totalprice = totalprice});
-        }
-
-
-        public IActionResult Remove(string productId)
-        {
-            Session session = db.Sessions.FirstOrDefault(x => x.Id == Request.Cookies["sessionId"]);
-            User guestUser = db.Users.FirstOrDefault(x => x.Id == Request.Cookies["guestId"]);
-            Cart existingCart = null;
-
-            if ((session != null || guestUser != null) && !(session != null && guestUser != null))
-            {
-                //logged in user
-                if (session != null)
-                {
-                    existingCart = db.Carts.FirstOrDefault(x => (x.UserId == session.UserId));
-                }
-                //guest user
-                else
-                {
-                    existingCart = db.Carts.FirstOrDefault(x => (x.UserId == guestUser.Id));
-
-                }
-            }
-
-            //retrieve all existing cart items 
-            List<CartDetail> existingCartDetails = existingCart.CartDetails.ToList();
-
-            //locate cart item to be removed and remove it
-            CartDetail cartDetailWithThisProduct = existingCartDetails.Find(x => x.ProductId == int.Parse(productId));
-            db.Remove(cartDetailWithThisProduct);
-            db.SaveChanges();
-
-            //check that if cart has no more item, remove cart
-            if (existingCart.CartDetails.ToList().Count() == 0)
-            {
-                db.Remove(existingCart);
-                db.SaveChanges();
-            }
-
-            return RedirectToAction("Index");
-
         }
     }
 }
-*/
