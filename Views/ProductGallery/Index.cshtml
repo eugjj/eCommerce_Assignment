@@ -106,12 +106,16 @@
 </div>
 
 <div style="float: right">
-    <span>Cart</span>
-    @if (cart > 0)
-    {
-        @:<span>@cart</span>
-    }
+    <a href="/Cart/Index">
+        <span class="glyphicon glyphicon-shopping-cart"></span>
+        @if (cart > 0)
+        {
+            @:<span>@cart</span>
+        }
+    </a>
 </div>
+
+<br />
 
 @{
     if (notFound != "" && notFound != null)
