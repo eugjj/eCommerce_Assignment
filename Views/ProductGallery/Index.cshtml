@@ -10,93 +10,100 @@
 }
 
 <style>
-        /* Product gallery styles
+    /* Product gallery styles
     ---------------------------------------------------*/
-        .searchBar {
-            padding: 10px;
+    .searchBar {
+        padding: 10px;
+    }
+
+        .searchBar:focus {
+            background: #C7ECFD;
         }
 
-            .searchBar:focus {
-                background: #C7ECFD;
-            }
+    .searchHi {
+        background-color: #AEE4FC;
+        font-weight: bold;
+    }
 
-        .searchHi {
-            background-color: #AEE4FC;
-            font-weight: bold;
+    .img {
+        max-width: 95%;
+        height: auto;
+    }
+
+    .item {
+        display: block;
+        width: 100%;
+        padding: 60px;
+        border: none;
+        margin-bottom: 2px;
+        box-sizing: border-box;
+        font-size: 1rem;
+        text-align: center;
+        text-decoration: none;
+        background: #F5F5F5;
+        color: #000;
+    }
+
+        .item:hover {
+            border: 2px solid #29b6f6
         }
 
-        .img {
-            max-width: 95%;
-            height: auto;
+    .productPrice {
+        font-weight: bold;
+        color: #29b6f6;
+        font-size: 120%;
+    }
+
+    .productName {
+        font-weight: bold;
+        font-family: Arial;
+        font-size: 110%;
+    }
+
+    .productDesc {
+        font-weight: lighter;
+    }
+
+    .item:nth-of-type(even) {
+        background: #F8F8F8;
+    }
+
+    /* media screen and (min-width: 700px) {*/
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .alert {
+        padding: 20px;
+        background-color: #f44336;
+        color: white;
+    }
+
+    .closebtn {
+        margin-left: 15px;
+        color: white;
+        font-weight: bold;
+        float: right;
+        font-size: 22px;
+        line-height: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+        .closebtn:hover {
+            color: black;
         }
-
-        .item {
-            display: block;
-            width: 100%;
-            padding: 60px;
-            border: none;
-            margin-bottom: 2px;
-            box-sizing: border-box;
-            font-size: 1rem;
-            text-align: center;
-            text-decoration: none;
-            background: #F5F5F5;
-            color: #000;
-        }
-
-            .item:hover {
-                border: 2px solid #29b6f6
-            }
-
-        .productPrice {
-            font-weight: bold;
-            color: #29b6f6;
-            font-size: 120%;
-        }
-
-        .productName {
-            font-weight: bold;
-            font-family: Arial;
-            font-size: 110%;
-        }
-
-        .productDesc {
-            font-weight: lighter;
-        }
-
-        .item:nth-of-type(even) {
-            background: #F8F8F8;
-        }
-
-        /* media screen and (min-width: 700px) {*/
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .alert {
-            padding: 20px;
-            background-color: #f44336;
-            color: white;
-        }
-
-        .closebtn {
-            margin-left: 15px;
-            color: white;
-            font-weight: bold;
-            float: right;
-            font-size: 22px;
-            line-height: 20px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-            .closebtn:hover {
-                color: black;
-            }
 </style>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
 
 <div class='searchBar'>
     <form action="/ProductGallery/Search" method="post">
@@ -112,6 +119,7 @@
         {
             @:<span>@cart</span>
         }
+        </span>
     </a>
 </div>
 

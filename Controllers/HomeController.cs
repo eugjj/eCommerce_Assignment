@@ -32,6 +32,7 @@ namespace eCommence_Assignment.Controllers
                 return RedirectToAction("Index", "Login");
             }
 
+            ViewData["Title"] = "Home";
             return View();
         }
 

@@ -37,7 +37,7 @@ namespace eCommence_Assignment.Controllers
                 return RedirectToAction("Index", "ProductGallery");
             }
 
-            
+            ViewData["Title"] = "Login";
             return View();
         }
 
