@@ -39,10 +39,6 @@ namespace eCommence_Assignment.Controllers
                 return dateTime.ToString();
             }
 
-        // this method will check qty of a product in cartdetails db and update qty
-        public void UpdateProductQty(Products pName)
-        {
-            List<Cart> products = db.
-        }
+
     }
 }

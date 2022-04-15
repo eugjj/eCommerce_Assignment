@@ -81,10 +81,13 @@ namespace eCommence_Assignment.Controllers
 
             //count check for the top right total product qty number
             List<Cart> cart_items = db.Cart.ToList();
-            int count;
+            int count = 0;
             if (cart_items.Count > 0)
             {
-                count = cart_items.Count;
+                foreach (Cart item in cart_items)
+                {
+                    count += item.ProductQty;
+                }
             }
             else
                 count = 0;
