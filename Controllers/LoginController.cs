@@ -57,7 +57,9 @@ namespace eCommence_Assignment.Controllers
 
             if (user == null)
             {
-                return RedirectToAction("Index", "Login");
+                ViewData["typedName"] = username;
+                ViewData["errorMsg"] = "Invalid Username or Password!";
+                return View("Index");
             }
 
            

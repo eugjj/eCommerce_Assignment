@@ -1,28 +1,50 @@
-﻿<form action="/Login/Login" method="POST">
-    <div style="text-align:center">
-        <div class="my_tbl">
-            <div class="my_row">
-                <div class="my_cell">
-                    Username:
+﻿
+<style>
+    .errMsg {
+        color: red;
+        font-weight: bold;
+    }
+</style>
+
+<form id="form" action="/Login/Login" method="POST">
+    <table>
+        <tr>
+            <td>
+                <div>
+                    <div>
+                        <figure style="margin-bottom:50px; text-align:left;">
+                            
+                            <img src="~/images/GIRLDEVELOPER.gif" style="vertical-align:middle; margin-top:20px;margin-left:50px;margin-right:15px;height:450px"/>
+                        </figure>
+                    </div>
                 </div>
-                <div class="my_cell">
-                    <input name="username" />
-                </div>
-            </div>
-            <div class="my_row">
-                <div class="my_cell">
-                    Password:
-                </div>
-                <div class="my_cell">
-                    <input name="password" type="password" />
-                </div>
-            </div>
-            <div class="my_row">
-                <div class="my_cell"></div>
-                <div class="my_cell" style="text-align: right">
-                    <input type="submit" value="Login" class="btn btn-primary" />
-                </div>
-            </div>
-        </div>
-    </div>
+            </td>
+
+            
+                <td class="inputkey">
+                    <h2 style="line-height:2px;font-weight:bold;color:black;font-size:36px;display:block;">Login</h2>
+                    <br />
+                    <div style="position:relative;margin-bottom:25px;overflow:hidden;display:block">
+                        Username:
+                        <input id="username" type="text" name="username" class="form-control" value=@ViewData["typedName"] style="width:100%;display:block;padding:6px 15px;box-sizing:border-box;" />
+
+                        Password:
+                        <input id="password" type="password" name="password" class="form-control" style="width:100%;display:block;padding:6px 15px;box-sizing:border-box;" />
+                        
+                        <div colspan="2" algin="center">
+                            <div class="errMsg">@ViewData["errorMsg"]</div>
+
+                        </div>
+                        <br />
+                        
+                        <input type="submit" value="Login" class="btn btn-primary " style=" padding:15px 39px; display:inline-block;width:100%; height:50%;" />
+                    </div>
+                  
+
+                </td>
+
+            
+        </tr>
+    </table>
+
 </form>
