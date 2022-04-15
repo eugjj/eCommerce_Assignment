@@ -12,26 +12,25 @@ namespace eCommence_Assignment.Middleware
     public class CreateGuest
     {
         private readonly RequestDelegate next;
-        private DBContext dbContext;
         public CreateGuest(RequestDelegate next)
         {
             this.next = next;
+            
         }
-        public async Task Invoke(HttpContext context)
+        public async Task Invoke(HttpContext context, [FromServices] DBContext db)
         {
             string sessionId = context.Request.Cookies["SessionId"];
             string newGuestId = context.Request.Cookies["guestId"];
 
             if (sessionId == null && newGuestId == null)
             {
-               
-                User guest = new User 
-                { 
+                var guest = new User()
+                {
                     Id = Guid.NewGuid(),
-                    Username = "Guest"
+                    Username = "Guest",
                 };
-                dbContext.Add(guest);
-                dbContext.SaveChanges();
+                db.Add(guest);
+                db.SaveChanges();
 
                 string guestId = guest.Id.ToString();
                 context.Response.Cookies.Append("guestId", guestId);

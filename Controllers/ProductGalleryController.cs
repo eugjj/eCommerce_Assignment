@@ -12,7 +12,6 @@ namespace eCommence_Assignment.Controllers
     public class ProductGalleryController : Controller
     {
         private readonly DBContext db;
-        private readonly HttpContext context;
         public ProductGalleryController(DBContext db)
         {
             this.db = db;
@@ -62,6 +61,7 @@ namespace eCommence_Assignment.Controllers
         {
             Products p = db.Products.FirstOrDefault(x => x.Id == id);
             Cart productInCart = db.Cart.FirstOrDefault(x => x.ProductId == id);
+            string username = HttpContext.Request.Cookies["Username"];
 
             //if productId not in Cart then add new product (with qty 1), else update product qty
             if (productInCart == null)
@@ -71,6 +71,7 @@ namespace eCommence_Assignment.Controllers
                     ProductId = id,
                     ProductPrice = p.Price,
                     ProductQty = 1,
+                    Username = username
                 });
                 db.SaveChanges();
             }
