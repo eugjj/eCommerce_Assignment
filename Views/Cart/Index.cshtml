@@ -1,19 +1,19 @@
 ﻿
 @{
     ViewData["Title"] = "Home Page";
-    List<Products> products = (List<Products>)ViewData["data"];
     List<Cart> CurrentCart = (List<Cart>)ViewData["cartdetail"];
+    List<Products> products = (List<Products>)ViewData["data"];
 
 }
 @{
 
-    foreach (Cart item in CurrentCart)
+    foreach (Products item in products)
     {
         <div class='item'>
             @*<img class="img" src="@item.Products.ImageUrl">*@
-            <p class='productName'>@item.Products.Name   </p>
-            <p class='productPrice'>$@item.ProductPrice</p>
-            <form action="/ProductGallery/AddtoCart/@item.Products.Id" class="addCart" method="post">
+            <p class='productName'>@item.Name   </p>
+            <p class='productPrice'>$@item.Price</p>
+            <form action="/ProductGallery/AddtoCart/@item.Id" class="addCart" method="post">
                 <input type="submit" value="Add to Cart" name="productName">
             </form>
         </div>
@@ -38,7 +38,7 @@
                     double sum = 0.00;
                     foreach (Cart item in CurrentCart)
                     {
-                        sum = sum + item.ProductPrice * item.ProductQty;
+                        sum = sum + item.ProductQty * item.ProductPrice;
                     }
                     string total = $"${sum:#,0.00}";
                 }

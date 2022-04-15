@@ -56,15 +56,19 @@ namespace eCommence_Assignment.Controllers
 
             //List<Cart> CartItem = dbContext.Cart.ToList();
             List<Cart> a = dbContext.Cart.ToList();
-            
+            List<Products> products = new List<Products>();
+            foreach(Cart c in a)
+            {
+                products.Add(dbContext.Products.FirstOrDefault(x => x.Id == c.ProductId));
+            }
 
             //List<Cart> CartDetails = (List<Cart>)dbContext.Products.Where(x =>
             //x.Id == a.Id);
 
 
 
+            ViewData["data"] = products;
             ViewData["cartdetail"] = a;
-            //ViewData["cart"] = CartItem;
 
             return View();
         }
