@@ -70,7 +70,7 @@
 
 
                         <td>
-                            <form id=@item.Id action="/Cart/Remove" method="post">
+                            <form id=@item.Id action="/Cart/Remove/@item.Id" method="post">
                                 <input type="submit" id=@item.Id name=@item.Id value="Remove">
                             </form>
                         </td>

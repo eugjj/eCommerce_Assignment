@@ -57,13 +57,14 @@ namespace eCommence_Assignment.Controllers
         }
 
         [HttpPost]
-        public IActionResult Remove(Guid ProductId)
+        public IActionResult Remove(Guid id)
         {
             Cart currentCart = dbContext.Cart.FirstOrDefault(x =>
-            x.ProductId == ProductId);
+            x.ProductId == id);
             dbContext.Cart.Remove(currentCart);
             dbContext.SaveChanges();
-            return View();
+
+            return RedirectToAction("Index");
         }
       
         public IActionResult increaseCartQty(Guid ProductId)
