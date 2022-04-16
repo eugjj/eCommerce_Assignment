@@ -11,11 +11,9 @@ namespace eCommence_Assignment.Models
         {
             Id = new Guid();                     
         }
-        /* maps to primary key */
         public Guid Id { get; set; } 
         // generated product in string format
         public string PKey { get; set; }               
-        public virtual Guid transactionIDs { get; set; }
-        //public virtual ICollection<User> Users { get; set; }
+        public virtual Guid transactionIDs { get; set; }        
     }
 }
