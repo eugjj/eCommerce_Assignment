@@ -4,7 +4,9 @@
     List<Cart> CurrentCart = (List<Cart>)ViewData["cartdetail"];
     List<Products> products = (List<Products>)ViewData["data"];
     List<int> productQty = (List<int>)ViewData["cartQty"];
+
 }
+
 
 <style>
     .cart-table {
@@ -59,7 +61,7 @@
                         <td class="cart-name"><p class='productName'>@item.Name   </p></td>
                         <td class="cart-price"><p class='productPrice'>$@item.Price</p></td>
                         <td class="cart-qty">
-                            <form id=@item.Id action="/Cart/increaseCartQty" method="post">
+                            <form action="/Cart/increaseCartQty" method="post">
                                 <input type="submit" id=@item.Id name=@item.Id value="+">
                             </form>
                             <form action="/Cart/decreaseCartQty" method="post">
@@ -69,7 +71,8 @@
 
 
                         <td>
-                            <form id=@item.Id action="/Cart/Remove" method="post">
+                            <form action="/Cart/Remove" method="post">
+                                <input type="hidden" name="removeItem" value="@item.Id">
                                 <input type="submit" id=@item.Id name=@item.Id value="Remove">
                             </form>
                         </td>
@@ -80,7 +83,7 @@
             i++;
         }
         
-                <form action="/Cart/ConfirmPurchase" method="post">
+                <form action="/Cart/ConfirmPurchase" method="post" class=formHide>
                     <input type="submit" id=Cpurchase name=Cpurchase value="Confirm Purchase">
                 </form>
             
@@ -93,12 +96,12 @@
         <div align="center">
             <span style="font-size:32px">
                 Nothing in your cart!
-                Continue to shopping by clicking <a href="/ProductGallery">here</a>)
+                Continue to shopping by clicking <a href="/ProductGallery/Index">here</a>)
             </span>
         </div>
     }
 
-    <form action="/Cart/EmptyCart" method="post">
+    <form action="/Cart/EmptyCart" method="post" class="formHide">
         <input type="submit" id="cart-remove" name=cartRemove value="Empty cart">
     </form>
     {
