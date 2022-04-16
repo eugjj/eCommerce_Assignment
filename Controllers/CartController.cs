@@ -62,6 +62,8 @@ namespace eCommence_Assignment.Controllers
             foreach(Cart cartitem in allitemsInCart)
             {
                 var productitem = dbContext.Products.FirstOrDefault(x => x.Id == cartitem.ProductId);
+                
+                //group up same products together & qty are added
                 if (products.Contains(productitem) == false)
                 {
                     products.Add(productitem);
