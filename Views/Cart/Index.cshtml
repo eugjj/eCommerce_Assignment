@@ -1,4 +1,4 @@
-﻿
+
 @{
     ViewData["Title"] = "Home Page";
     List<Cart> CurrentCart = (List<Cart>)ViewData["cartdetail"];
@@ -9,26 +9,25 @@
 <style>
     .cart-table {
         table-layout: auto;
-        width: 100%;  
+        width: 100%;
         text-align: left;
         font-size: 120%;
     }
-    
-    .cart-item 
-    {
+
+    .cart-item {
         display: block;
-            width: 100%;
-            border-top: 2px solid #ace5ee;
-            margin-bottom: 2px;
-            box-sizing: border-box;
-            font-size: 1rem;
-            text-align: center;
-            text-decoration: none;
-            background: #F5F5F5;
-            color: #000;
+        width: 100%;
+        border-top: 2px solid #ace5ee;
+        margin-bottom: 2px;
+        box-sizing: border-box;
+        font-size: 1rem;
+        text-align: center;
+        text-decoration: none;
+        background: #F5F5F5;
+        color: #000;
     }
-        
-    .cart-item:nth-of-type(even) {
+
+        .cart-item:nth-of-type(even) {
             background: #F8F8F8;
         }
 
@@ -37,47 +36,42 @@
     }
 
     .cartImg {
-        width:200px;
+        width: 200px;
     }
 
     .cart-name {
         width: 260px;
+        vertical-align:central
     }
+
+    .cart-qty {
+        width: 150px;
+        height: 40px;
+    }
+    .cart-price {
+        width: 180px;
+    }
+
+    .cart-remove {
+        align-content:center;
+        border: none;
+        border-radius: 3px;
+        font-size: 15px;
+        height: 40px;
+        width: 80px;
+       
+    }
+
 </style>
 
-<section class="cart-grid">
-    @{
-        int i = 0;
-        foreach (Products item in products)
-        {
-            // to print collated product qty from productQty list<>
-            int qty = productQty[i];
-
-        <div class='cart-item'>
-            <table class="cart-table"><tr>
-            <td class="cartImg"><img class="cart-img" src="@item.ImageUrl"></td>
-            <td class="cart-name"><p class='productName'>@item.Name   </p></td>
-            <td class="cart-price"><p class='productPrice'>$@item.Price</p></td>
-            <td class="cart-qty">
-                <form action="/Cart/ChangeQty" method="post">
-                    <input type="number" id="cart-qtychange" name="cartQty" min="0" max="10" placeholder="@qty">
-                    </form></td>
-            <td><form action="/Cart/Remove" method="post">
-                    <input type="submit" id="cart-remove" name=cartRemove value="Remove">
-                    </form></td>
-            </tr></table>
-            </div>
-            i++;
-        }
-}
-</section>
-
+</br>
+</br>
 @{
     if (CurrentCart == null)
     {
         <div align="center">
             <span style="font-size:32px">
-                Nothing in your cart! 
+                Nothing in your cart!
                 Continue to shopping by clicking <a href="/ProductGallery">here</a>)
             </span>
         </div>
@@ -85,7 +79,8 @@
     else
     {
         <div align="right" style="font-size: 26px; font-weight:bold; margin-right:25px;">
-            Total: SGD: <span id="cTotal">
+            Total: SGD <span id="cTotal">
+
                 @{
                     double sum = 0.00;
                     foreach (Cart item in CurrentCart)
@@ -99,3 +94,38 @@
             <br /><br />
         </div>
     }}
+
+<section class="cart-grid">
+    @{
+        int i = 0;
+        foreach (Products item in products)
+        {
+            // to print collated product qty from productQty list<>
+            int qty = productQty[i];
+
+            <div class='cart-item'>
+                <table class="cart-table">
+                    <tr height="80">
+                        <td class="cartImg"><img class="cart-img" src="@item.ImageUrl"></td>
+                        <td class="cart-name"><p class='productName'>@item.Name   </p></td>
+                        <td class="cart-price"><p class='productPrice'>  $@item.Price</p></td>
+
+                        <td weight="80"class="cart-qty" align="left">
+                            <form action="/Cart/ChangeQty" method="post">
+                                <input type="number" id="cart-qtychange" name="cartQty" min="0" max="10" placeholder="@qty">
+                            </form>
+                        </td>
+
+                        <td  align="center">
+                            <form action="/Cart/Remove" method="post">
+                                <input class="cart-remove" style="background-color:lightsteelblue" type="submit" id="cart-remove" name=cartRemove value="Remove">
+                            </form>
+                        </td>
+
+                    </tr>
+                </table>
+            </div>
+            i++;
+        }
+    }
+</section>
