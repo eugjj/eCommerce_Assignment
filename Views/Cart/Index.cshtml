@@ -59,13 +59,14 @@
                         <td class="cart-name"><p class='productName'>@item.Name   </p></td>
                         <td class="cart-price"><p class='productPrice'>$@item.Price</p></td>
                         <td class="cart-qty">
+                            
                             <form id=@item.Id action="/Cart/increaseCartQty" method="post">
                                 <input type="submit" id=@item.Id name=@item.Id value="+">
                             </form>
                             <form action="/Cart/decreaseCartQty" method="post">
                                 <input type="submit" id=@item.Id name=@item.Id value="-">
                             </form>
-                        <td class="cart-price"><p class='productPrice'>@qty</p></td>
+<td class="cart-price"><p class='productPrice'>@qty</p></td>
 
 
                         <td>
@@ -98,7 +99,7 @@
         </div>
     }
 
-    <form action="/Cart/EmptyCart" method="post">
+    <form action="/Cart/EmptyCartBtn" method="post">
         <input type="submit" id="cart-remove" name=cartRemove value="Empty cart">
     </form>
     {
