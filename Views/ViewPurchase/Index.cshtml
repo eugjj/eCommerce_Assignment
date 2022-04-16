@@ -1,57 +1,91 @@
-﻿@{
-    List<Products> products = (List<Products>)ViewData["productdetails"];
-    List<transactionID> showpurchase = (List<transactionID>)ViewData["showPurchase"];
-    List<ProductKey> pkeys = (List<ProductKey>)ViewData["pkeys"];
+@{ List<Products> products = (List<Products>)ViewData["productdetails"];
+                List<transactionID> showpurchase = (List<transactionID>)ViewData["showPurchase"];
+                List<ProductKey> pkeys = (List<ProductKey>)ViewData["pkeys"]; 
 }
 
+<span style="float-left; font-size:22px; font-style:italic;"><b>Your Purchases</b></span>
+<br />
+<br />
 
-@{
-
-    foreach (transactionID TID in showpurchase)
-    {
+@{ foreach (transactionID TID in showpurchase)
+   {
         var iter = from pk in pkeys
                    where pk.transactionIDs == TID.Id
                    select pk.PKey;
         var iter2 = from item in products
                     where item.Id == TID.ProductId
-                    select new {item.Name, item.ImageUrl};
+                    select new { item.Name, item.ImageUrl };
 
-    <table>
+        <table align="center">
+        
+            <tr>
 
+                @foreach (var item in iter2)
+                {
+            
+            
+                    <td style="padding-bottom:50px">
+                        <div class="box" style="float:left; border: 1px solid black"; text-align: center; padding: 10px 10px; width: 180px; height: 240px; border-radius: 5px;">
+                            <div class="box-product-pic">
+                                <img src="@item.ImageUrl" style="width: 150px">
+                                <br/>
+                            </div>
+                        </div>
+                        <div class="box-product-name">
+                            <h4>@item.Name</h4>
+                            <button type="button" class="btn btn-primary">Download</button>
+                            <br/>
+                        </div>
+                    </td>
+            
 
-        @foreach (var item in iter2)
-        {
-            <tr>@item.Name   </tr>
-            <tr><td><img src="@item.ImageUrl" style="width: 160px"></td></tr>
-            break;
-        }
-        <tr>Quantity bought: @TID.qty</tr>
-        <tr>
-            Purchased at: @UnixToDateTime(TID.CreateTimestamp)
-        </tr>
-        <tr><td>
-    <select name="Product key from purchase">
-        @foreach (var pkey in iter)
-        {
-            <option value="placeholder">@pkey</option>
-        }
-    </select>
-</td>
-        </tr>
-    </table>
+                break;
+
+         
+                }
+        
+                <td style="padding-left:30px">
+                    <span style="font-size: 16px; font-weight:bold;">Quantity Bought: @TID.qty</span>
+            
+
+                    <br />
+
+            
+                    <span style="font-size: 16px; font-weight:bold;">Purchased On: @UnixToDateTime(TID.CreateTimestamp)</span>
+
+                    <br />
+            
+                    <span style="font-size: 16px; font-weight:bold;">Activation Code:</span>
+                        
+                        <select name="Product key from purchase">
+                             @foreach (var pkey in iter)
+                             {
+                                <option value="placeholder">@pkey</option>
+                             }
+                        </select>
+                        
                 
+                    <br />
+                    <br />
+                    <br />
+                
+                </td>
+            
+            
 
+        </tr>
+        </table> 
 
-
-
-
-    }
+        <br />
+        <br />
+        <br />
+   }  
 }
-@functions{
-    public static string UnixToDateTime(long unixTimeStamp)
-    {
-        DateTime dateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
-        dateTime = dateTime.AddSeconds(unixTimeStamp).ToLocalTime();
-        return dateTime.ToString();
-    }
-}
+                                                           
+@functions{ public static string UnixToDateTime(long unixTimeStamp)
+            {
+                DateTime dateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+                dateTime = dateTime.AddSeconds(unixTimeStamp).ToLocalTime();
+                return dateTime.ToString();
+            } 
+ }
