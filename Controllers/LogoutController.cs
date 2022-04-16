@@ -24,15 +24,26 @@ namespace eCommence_Assignment.Controllers
                 Guid sessionId = Guid.Parse(Request.Cookies["sessionId"]);
 
                 Session session = dbContext.Sessions.FirstOrDefault(x => x.Id == sessionId);
+                List<Cart> allitemsInCart = dbContext.Cart.ToList();
                 if (session != null)
                 {
                     
                     dbContext.Remove(session);
 
                     
+                    foreach (Cart items in allitemsInCart)
+                    {
+                        dbContext.Remove(items);
+                       
+                    }
+
                     dbContext.SaveChanges();
                 }
+
+                
+
             }
+
 
             
             Response.Cookies.Delete("SessionId");
