@@ -1,26 +1,52 @@
-﻿@{    
+﻿@{
     List<Products> products = (List<Products>)ViewData["productdetails"];
     List<transactionID> showpurchase = (List<transactionID>)ViewData["showPurchase"];
     List<ProductKey> pkeys = (List<ProductKey>)ViewData["pkeys"];
 }
 
 
-    @{
+@{
 
-        foreach (transactionID TID in showpurchase)
+    foreach (transactionID TID in showpurchase)
+    {
+        var iter = from pk in pkeys
+                   where pk.transactionIDs == TID.Id
+                   select pk.PKey;
+        var iter2 = from item in products
+                    where item.Id == TID.ProductId
+                    select new {item.Name, item.ImageUrl};
+
+    <table>
+
+
+        @foreach (var item in iter2)
         {
-
-                <table>
-                    <tr>
-                        <td>Quantity bought: @TID.qty</td>
-                        <td class="cart-qty">Purchased at: @UnixToDateTime(TID.CreateTimestamp)</td>
-                                             <td>@TID.ProductId</td> </tr>                                                 
-                                                                             
-                            
-                        </table>      
-
-            }
+            <tr>@item.Name   </tr>
+            <tr><td><img src="@item.ImageUrl" style="width: 160px"></td></tr>
+            break;
         }
+        <tr>Quantity bought: @TID.qty</tr>
+        <tr>
+            Purchased at: @UnixToDateTime(TID.CreateTimestamp)
+        </tr>
+        <tr><td>
+    <select name="Product key from purchase">
+        @foreach (var pkey in iter)
+        {
+            <option value="placeholder">@pkey</option>
+        }
+    </select>
+</td>
+        </tr>
+    </table>
+                
+
+
+
+
+
+    }
+}
 @functions{
     public static string UnixToDateTime(long unixTimeStamp)
     {

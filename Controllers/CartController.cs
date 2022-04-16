@@ -102,7 +102,14 @@ namespace eCommence_Assignment.Controllers
             else
                 return RedirectToAction("Index", "Login");
         }
-        public void EmptyCart()
+
+        public IActionResult EmptyCartBtn()
+        {
+            EmptyCart();
+            return RedirectToAction("Index", "ProductGallery");
+        }
+
+            public void EmptyCart()
         {
             List<Cart> allitemsInCart = dbContext.Cart.ToList();
             foreach (Cart items in allitemsInCart)
