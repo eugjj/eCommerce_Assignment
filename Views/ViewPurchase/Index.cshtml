@@ -12,20 +12,13 @@
 
                 <table>
                     <tr>
-                        <td>Quantity bought: @TID.qty</td><p></p>
-                        <td class="cart-qty"><p>Purchased at: @UnixToDateTime(TID.CreateTimestamp)</p>
-                                             <p>@TID.ProductId</p> 
-                            <div class='item'>
-
-
-                                
-
-                                
-
-                            </div>
+                        <td>Quantity bought: @TID.qty</td>
+                        <td class="cart-qty">Purchased at: @UnixToDateTime(TID.CreateTimestamp)</td>
+                                             <td>@TID.ProductId</td> </tr>                                                 
+                                                                             
                             
-                        </table>
-       }
+                        </table>      
+
             }
         }
 @functions{
