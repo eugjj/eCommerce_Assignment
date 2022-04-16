@@ -6,7 +6,16 @@
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
+@{
+    int cart = 0;
+    if (ViewData["cart"] != null)
+    {
+        cart = (int)ViewData["cart"];
+    }
+}
 
 <style>
     .hello {
@@ -51,6 +60,10 @@
                             <a class="@ViewData["Home"]" asp-area="" asp-controller="ProductGallery" asp-action="Index" style="text-decoration: underline">Home</a>
                             &nbsp;|&nbsp;
                             <a class="@ViewData["Login"]" asp-area="" asp-controller="Login" asp-action="Index" style="text-decoration: underline" id="hide">Login</a>
+                            &nbsp;|&nbsp;
+                            <div style="float: right"><a asp-area="" asp-controller="Cart" asp-action="Index">
+                                <i class="fa fa-shopping-cart" style="font-size:30px"></i><input type="button" value="@cart" style="margin-left:12px"/></a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -71,6 +84,10 @@
                             <a class="@ViewData["My Purchases"]" asp-area="" asp-controller="MyPurchases" asp-action="Index" style="text-decoration: underline;">My Purchases</a>
                             &nbsp;|&nbsp;
                             <a class="@ViewData["Login"]" asp-area="" asp-controller="Logout" asp-action="Index" style="text-decoration: underline;">Logout</a>
+                            &nbsp;|&nbsp;
+                            <div style="float: right"><a asp-area="" asp-controller="Cart" asp-action="Index">
+                                <i class="fa fa-shopping-cart" style="font-size:30px"></i><input type="button" value="@cart" style="margin-left:12px"/></a>
+                            </div>
                         </div>
                     </div>
                 </div>

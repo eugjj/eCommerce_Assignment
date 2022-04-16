@@ -2,11 +2,7 @@
     List<Products> products = (List<Products>)ViewData["data"];
     string search = (string)ViewData["search"];
     string notFound = (string)ViewData["not"];
-    int cart = 0;
-    if (ViewData["cart"] != null)
-    {
-        cart = (int)ViewData["cart"];
-    }
+    
 }
 
 <style>
@@ -105,13 +101,7 @@
     </form>
 </div>
 
-<div style="float: right">
-    <span>Cart</span>
-    @if (cart > 0)
-    {
-        @:<span>@cart</span>
-    }
-</div>
+
 
 @{
     if (notFound != "" && notFound != null)
