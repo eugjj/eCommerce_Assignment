@@ -54,7 +54,7 @@ namespace eCommence_Assignment.Data
             {
                 Name = "SQL Server Management Studio",
                 Price = 49,
-                ImageUrl = "/images/sql.png",
+                ImageUrl = "/images/sql.jpg",
                 Description = "Configure, managage, and administer all database components within Microsoft SQL Server",
                 Brand = "Microsoft"
             });
