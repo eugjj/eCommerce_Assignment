@@ -31,6 +31,10 @@ namespace eCommence_Assignment.Controllers
                 // no session; bring user to Login page
                 return RedirectToAction("Index", "Login");
             }
+            else
+            {
+                return RedirectToAction("Index", "ProductGallery");
+            }
 
             return View();
         }
