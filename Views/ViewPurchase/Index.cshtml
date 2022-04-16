@@ -1,24 +1,33 @@
-﻿@{
-    List<ProductKey> showpurchase = (List<ProductKey>)ViewData["showPurchase"];
+﻿@{    
+    List<Products> products = (List<Products>)ViewData["productdetails"];
+    List<transactionID> showpurchase = (List<transactionID>)ViewData["showPurchase"];
+    List<ProductKey> pkeys = (List<ProductKey>)ViewData["pkeys"];
 }
 
-<section class='grid-container'>
+
     @{
-        foreach (ProductKey Product in showpurchase)
+
+        foreach (transactionID TID in showpurchase)
         {
 
+                <table>
+                    <tr>
+                        <td>Quantity bought: @TID.qty</td><p></p>
+                        <td class="cart-qty"><p>Purchased at: @UnixToDateTime(TID.CreateTimestamp)</p>
+                                             <p>@TID.ProductId</p> 
+                            <div class='item'>
 
-            <div class='item'>
 
+                                
 
-                <p class='Product'>@Product.Products</p>
-                <p class='Product'>@Product.PKey</p>
-                <p class='Product'>@UnixToDateTime(Product.CreateTimestamp)</p>
+                                
 
-            </div>
+                            </div>
+                            
+                        </table>
+       }
+            }
         }
-    }
-</section>
 @functions{
     public static string UnixToDateTime(long unixTimeStamp)
     {

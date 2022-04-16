@@ -34,9 +34,7 @@ namespace eCommence_Assignment.Controllers
             else
             {
                 return RedirectToAction("Index", "ProductGallery");
-            }
-
-            return View();
+            }            
         }
 
         public IActionResult Privacy()

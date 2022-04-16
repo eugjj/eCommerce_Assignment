@@ -21,36 +21,6 @@ namespace eCommence_Assignment.Controllers
             this.dbContext = dbContext;
         }
 
-        /*            Session SessionId = dbContext.Sessions.FirstOrDefault(x => x.Id == Request.Cookies["sessionId"]);
-                    User guestUser = dbContext.Users.FirstOrDefault(x => x.Id == Request.Cookies["guestId"]);*//*
-                    string sessionId = context.Request.Cookies["sessionId"];
-                    string newGuestId = context.Request.Cookies["guestId"];
-                    Cart existingCart = null;
-                    if ((sessionId != null || newGuestId != null) && !(sessionId != null && newGuestId != null))
-                    {
-                        //logged in user
-                        if (sessionId != null)
-                        {
-                            existingCart = dbContext.Cart.FirstOrDefault(x => (x.UserId == dbContext.Session.UserId));
-                            ViewData["username"] = dbContext.Session.User.Username;  //Pass the username 
-                        }
-                        //guest user
-                        else
-                        {
-                            existingCart = dbContext.Cart.FirstOrDefault(x => (x.UserId == newGuestId));
-
-                        }
-
-                        //cart exists
-                        if (existingCart != null)
-                        {
-                            List<CartDetail> cartDetails = dbContext.CartDetail.Where(x => x.CartId == existingCart.UserId).ToList();
-                            ViewData["cart"] = cartDetails;
-                        }
-
-                    }
-                    return View();
-                }*/
         public IActionResult Index()
         {
 
@@ -58,11 +28,11 @@ namespace eCommence_Assignment.Controllers
             List<Cart> allitemsInCart = dbContext.Cart.ToList();
             List<Products> products = new List<Products>();
             List<int> qty = new List<int>();
-            
-            foreach(Cart cartitem in allitemsInCart)
+
+            foreach (Cart cartitem in allitemsInCart)
             {
                 var productitem = dbContext.Products.FirstOrDefault(x => x.Id == cartitem.ProductId);
-                
+
                 //group up same products together & qty are added
                 if (products.Contains(productitem) == false)
                 {
@@ -85,5 +55,89 @@ namespace eCommence_Assignment.Controllers
 
             return View();
         }
+
+        [HttpPost]
+        public IActionResult Remove(Guid ProductId)
+        {
+            Cart currentCart = dbContext.Cart.FirstOrDefault(x =>
+            x.ProductId == ProductId);
+            dbContext.Cart.Remove(currentCart);
+            dbContext.SaveChanges();
+            return View();
+        }
+      
+        public IActionResult increaseCartQty(Guid ProductId)
+        {
+            Cart currentCart = dbContext.Cart.FirstOrDefault(x => x.ProductId ==
+            ProductId);
+            if (currentCart.ProductQty > 0)
+            {
+                currentCart.ProductQty++;
+            }
+            dbContext.SaveChanges();
+            return View("Index");
+        }
+        public IActionResult decreaseCartQty(Guid ProductId)
+        {
+            Cart currentCart = dbContext.Cart.FirstOrDefault(x => x.ProductId ==
+            ProductId);
+            if (currentCart.ProductQty > 1)
+            {
+                currentCart.ProductQty--;
+            }
+            dbContext.SaveChanges();
+            return View("Index");
+        }
+        public IActionResult ConfirmPurchase()
+        {
+            List<Cart> allitemsInCart = dbContext.Cart.ToList();
+            string user = Request.Cookies["Username"];
+            if (user != null)
+            {
+                GenerateTID(allitemsInCart, user);
+                EmptyCart();                        
+                return RedirectToAction("Index", "ViewPurchase");
+            }
+            else
+                return RedirectToAction("Index", "Login");
+        }
+        public void EmptyCart()
+        {
+            List<Cart> allitemsInCart = dbContext.Cart.ToList();
+            foreach (Cart items in allitemsInCart)
+            {
+                dbContext.Remove(items);
+            }
+
+            dbContext.SaveChanges();
+        }
+
+        //when confirm purchase is executed
+        public void GenerateTID(List<Cart> itemsincart, string user)
+        {
+            foreach (Cart item in itemsincart)
+            {
+                transactionID TID = (new transactionID
+                {
+                    CreateTimestamp = DateTimeOffset.Now.ToUnixTimeSeconds(),
+                    Users = user,
+                    ProductId = item.ProductId,
+                    qty = item.ProductQty
+
+                });
+                // generate a transactionID upon successful purchase     
+                dbContext.transactionIDs.Add(TID);
+
+                for (int qty = item.ProductQty; qty > 0; qty--)
+                {
+                    dbContext.ProductKeys.Add(new ProductKey
+                    {
+                        PKey = Guid.NewGuid().ToString(),
+                        transactionIDs = TID.Id
+                    });                    
+                }
+            }
+            dbContext.SaveChanges();
+        }        
     }
 }

@@ -24,21 +24,21 @@ namespace eCommence_Assignment.Controllers
             }
             else
             {
-                List<ProductKey> showPurchase =
-                    db.ProductKeys.Where(x => x.Users == userName).ToList();
-                
-                ViewData["showPurchase"] = showPurchase;                
+                List<transactionID> showPurchase =
+                    db.transactionIDs.Where(x => x.Users == userName).ToList();
+                List<Products> products = new List<Products>();
+                List<ProductKey> Pkeys = db.ProductKeys.ToList();
+                foreach (transactionID TID in showPurchase)
+                {
+                    var productitem = db.Products.FirstOrDefault(x => x.Id == TID.ProductId);
+                    products.Add(productitem);
+                }
+                ViewData["pkeys"] = Pkeys;
+                ViewData["showPurchase"] = showPurchase;
+                ViewData["productdetails"] = products;
             }
             return View();
         }
-            //Method can be called to convert unix time to string format for display in view
-        public static string UnixToDateTime(long unixTimeStamp)
-            {
-                DateTime dateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
-                dateTime = dateTime.AddSeconds(unixTimeStamp).ToLocalTime();
-                return dateTime.ToString();
-            }
-
-
+            
     }
 }
