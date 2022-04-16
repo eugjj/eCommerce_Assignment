@@ -12,21 +12,33 @@
         var iter = from pk in pkeys
                    where pk.transactionIDs == TID.Id
                    select pk.PKey;
+        var iter2 = from item in products
+                    where item.Id == TID.ProductId
+                    select new {item.Name, item.ImageUrl};
+
+    <table>
 
 
-        <table>
-            <tr>
-                <td>Quantity bought: @TID.qty</td>
-            </tr>
-            <tr>  <td class="cart-qty">Purchased at: @UnixToDateTime(TID.CreateTimestamp)</td>
-            </tr>
-
-</table>
-        <select name="Product key from purchase">
-            @foreach (var pkey in iter)
-                {
-            <option value="placeholder">@pkey</option>}
-        </select>
+        @foreach (var item in iter2)
+        {
+            <tr>@item.Name   </tr>
+            <tr><td><img src="@item.ImageUrl" style="width: 160px"></td></tr>
+            break;
+        }
+        <tr>Quantity bought: @TID.qty</tr>
+        <tr>
+            Purchased at: @UnixToDateTime(TID.CreateTimestamp)
+        </tr>
+        <tr><td>
+    <select name="Product key from purchase">
+        @foreach (var pkey in iter)
+        {
+            <option value="placeholder">@pkey</option>
+        }
+    </select>
+</td>
+        </tr>
+    </table>
                 
 
 
