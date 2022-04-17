@@ -67,27 +67,27 @@ namespace eCommence_Assignment.Controllers
             return RedirectToAction("Index");
         }
       
-        public IActionResult increaseCartQty(Guid id)
+        public IActionResult increaseCartQty(Guid ProductId)
         {
-            Cart currentCart = dbContext.Cart.FirstOrDefault(x => 
-            x.ProductId == id);
+            Cart currentCart = dbContext.Cart.FirstOrDefault(x => x.ProductId ==
+            ProductId);
             if (currentCart.ProductQty > 0)
             {
                 currentCart.ProductQty++;
             }
             dbContext.SaveChanges();
-            return RedirectToAction("Index");
+            return View("Index");
         }
-        public IActionResult decreaseCartQty(Guid id)
+        public IActionResult decreaseCartQty(Guid ProductId)
         {
             Cart currentCart = dbContext.Cart.FirstOrDefault(x => x.ProductId ==
-            id);
+            ProductId);
             if (currentCart.ProductQty > 1)
             {
                 currentCart.ProductQty--;
             }
             dbContext.SaveChanges();
-            return RedirectToAction("Index");
+            return View("Index");
         }
         public IActionResult ConfirmPurchase()
         {
