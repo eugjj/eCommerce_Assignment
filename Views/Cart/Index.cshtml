@@ -1,5 +1,6 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@using ecommerce_Assignment.Models
+@{
+    ViewData["Title"] = "eStore cart";
     List<Cart> CurrentCart = (List<Cart>)ViewData["cartdetail"];
     List<Products> products = (List<Products>)ViewData["data"];
     List<int> productQty = (List<int>)ViewData["cartQty"];

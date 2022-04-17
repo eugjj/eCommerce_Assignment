@@ -1,6 +1,9 @@
+@using ecommerce_Assignment.Models
 @{ List<Products> products = (List<Products>)ViewData["productdetails"];
                 List<transactionID> showpurchase = (List<transactionID>)ViewData["showPurchase"];
                 List<ProductKey> pkeys = (List<ProductKey>)ViewData["pkeys"]; 
+
+    ViewData["Title"] = "Your Purchases";
 }
 
 <span style="margin-left:25px; font-size:22px; font-style:italic;"><b>Your Purchases</b></span>

@@ -1,8 +1,11 @@
-﻿@{
+﻿@using ecommerce_Assignment.Models
+
+@{
     List<Products> products = (List<Products>)ViewData["data"];
     string search = (string)ViewData["search"];
     string notFound = (string)ViewData["not"];
-    
+
+    ViewData["Title"] = "Home";
 }
 
 <script>
@@ -132,7 +135,7 @@
                 <p class='productName'>@Html.Raw(name)   <i>[@Html.Raw(brand)]</i></p>
                 <p class='productDesc'>@Html.Raw(desc)</p>
                 <p class='productPrice'>$@p.Price</p>
-                <form action="/ProductGallery/AddtoCart/@p.Id" class="addCart" method="post">
+                <form action="/ProductGallery/AddtoCart/@p.Id" class="addCart" method="post" align="bottom">
                     <input type="submit" value="Add to Cart" name="productName">
                 </form>
             </div>
