@@ -21,7 +21,19 @@ namespace eCommence_Assignment.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            
+            List<Cart> cart_items = db.Cart.ToList();
+            int count = 0;
+            if (cart_items.Count > 0)
+            {
+                foreach (Cart item in cart_items)
+                {
+                    count += item.ProductQty;
+                }
+            }
+            else
+                count = 0;
+
+            ViewData["cart"] = count;
             List<Products> test = db.Products.ToList();
             ViewData["data"] = test;
 
