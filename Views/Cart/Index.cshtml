@@ -94,15 +94,17 @@
         <div align="center">
             <span style="font-size:32px">
                 Nothing in your cart!
-                Continue to shopping by clicking <a href="/ProductGallery">here</a>)
+                Continue to shopping by clicking <a href="/ProductGallery">here</a>
             </span>
         </div>
     }
 
+    else
+    {
     <form action="/Cart/EmptyCartBtn" method="post">
         <input type="submit" id="cart-remove" name=cartRemove value="Empty cart">
     </form>
-    {
+    
         <div align="right" style="font-size: 26px; font-weight:bold; margin-right:25px;">
             Total: SGD: <span id="cTotal">
                 @{
