@@ -36,8 +36,20 @@ namespace ecommerce_Assignment.Controllers
               
                 return RedirectToAction("Index", "ProductGallery");
             }
-
             
+            List<Cart> cart_items = dbContext.Cart.ToList();
+            int count = 0;
+            if (cart_items.Count > 0)
+            {
+                foreach (Cart item in cart_items)
+                {
+                    count += item.ProductQty;
+                }
+            }
+            else
+                count = 0;
+
+            ViewData["cart"] = count;
             return View();
         }
 
