@@ -11,8 +11,7 @@ namespace eCommence_Assignment.Models
         {
             Id = new Guid();
         }
-        public Guid Id { get; set; }       
-        
+        public Guid Id { get; set; }      
         // timestamp to be used for show user date of purchase
         public long CreateTimestamp { get; set; }
         public string Users { get; set; }

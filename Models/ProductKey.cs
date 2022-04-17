@@ -11,8 +11,7 @@ namespace eCommence_Assignment.Models
         {
             Id = new Guid();                     
         }
-        public Guid Id { get; set; } 
-        // generated product in string format
+        public Guid Id { get; set; }         
         public string PKey { get; set; }               
         public virtual Guid transactionIDs { get; set; }        
     }

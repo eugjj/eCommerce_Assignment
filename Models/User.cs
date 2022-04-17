@@ -12,17 +12,11 @@ namespace eCommence_Assignment.Models
         {
             Id = new Guid();
             Products = new List<Products>();
-
         }
 
         public Guid Id { get; set; }
-
         public string Username { get; set; }
-
-        public byte[] PassHash { get; set; }
-
-       
+        public byte[] PassHash { get; set; }       
         public virtual ICollection<Products> Products { get; set; }
-
     }
 }

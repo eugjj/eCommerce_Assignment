@@ -22,9 +22,7 @@ namespace eCommence_Assignment.Controllers
         }
 
         public IActionResult Index()
-        {
-
-            //List<Cart> CartItem = dbContext.Cart.ToList();
+        {            
             List<Cart> allitemsInCart = dbContext.Cart.ToList();
             List<Products> products = new List<Products>();
             List<int> qty = new List<int>();
@@ -46,31 +44,27 @@ namespace eCommence_Assignment.Controllers
                 }
             }
 
-            //List<Cart> CartDetails = (List<Cart>)dbContext.Products.Where(x =>
-            //x.Id == a.Id);
-
             ViewData["cartQty"] = qty;
             ViewData["data"] = products;
             ViewData["cartdetail"] = allitemsInCart;
 
             return View();
         }
-
-        [HttpPost]
-        public IActionResult Remove(Guid removeItem)
+        
+        public IActionResult Remove(Guid id)
         {
             Cart currentCart = dbContext.Cart.FirstOrDefault(x =>
-            x.ProductId == removeItem);
+            x.ProductId == id);
             dbContext.Cart.Remove(currentCart);
             dbContext.SaveChanges();
 
             return RedirectToAction("Index");
         }
       
-        public IActionResult increaseCartQty(Guid increaseQty)
+        public IActionResult increaseCartQty(Guid id)
         {
-            Cart currentCart = dbContext.Cart.FirstOrDefault(x => x.ProductId ==
-            increaseQty);
+            Cart currentCart = dbContext.Cart.FirstOrDefault(x => 
+            x.ProductId == id);
             if (currentCart.ProductQty > 0)
             {
                 currentCart.ProductQty++;
@@ -78,10 +72,10 @@ namespace eCommence_Assignment.Controllers
             dbContext.SaveChanges();
             return RedirectToAction("Index");
         }
-        public IActionResult decreaseCartQty(Guid decreaseQty)
+        public IActionResult decreaseCartQty(Guid id)
         {
             Cart currentCart = dbContext.Cart.FirstOrDefault(x => x.ProductId ==
-            decreaseQty);
+            id);
             if (currentCart.ProductQty > 1)
             {
                 currentCart.ProductQty--;
@@ -93,7 +87,7 @@ namespace eCommence_Assignment.Controllers
         {
             List<Cart> allitemsInCart = dbContext.Cart.ToList();
             string user = Request.Cookies["Username"];
-            if (user != null)
+            if (user != null && user!="Guest")
             {
                 GenerateTID(allitemsInCart, user);
                 EmptyCart();                        
@@ -133,9 +127,9 @@ namespace eCommence_Assignment.Controllers
                     qty = item.ProductQty
 
                 });
-                // generate a transactionID upon successful purchase     
+                // generate a transactionID for each type of product in cart    
                 dbContext.transactionIDs.Add(TID);
-
+                // generate product key in accordance to the quantity purchased
                 for (int qty = item.ProductQty; qty > 0; qty--)
                 {
                     dbContext.ProductKeys.Add(new ProductKey

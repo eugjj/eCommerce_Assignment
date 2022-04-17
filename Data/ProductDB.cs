@@ -22,7 +22,7 @@ namespace eCommence_Assignment.Data
             {
                 Name = "Microsoft 365 Family Basic",
                 Price = 128,
-                ImageUrl = "/images/m365_family.png",
+                ImageUrl = "/images/m365_family.jpg",
                 Description = "Create inspiring documents with smart assistance features in Word, Excel & PowerPoint​",
                 Brand = "Microsoft"
             });

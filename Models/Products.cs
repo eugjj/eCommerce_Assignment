@@ -7,7 +7,7 @@ namespace eCommence_Assignment.Models
 {
     public class Products
     {
-        public Products()  //constructor
+        public Products()  
         {
             Id = new Guid();
         }
@@ -28,9 +28,7 @@ namespace eCommence_Assignment.Models
         [Required]
         public string Brand { get; set; }
 
-        public virtual ProdctCategory CategoryName { get; set; }
-
-        // icollection productkey
+        public virtual ProdctCategory CategoryName { get; set; }         
 
 
     }

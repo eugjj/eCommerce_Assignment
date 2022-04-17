@@ -1,12 +1,9 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Home Page";
     List<Cart> CurrentCart = (List<Cart>)ViewData["cartdetail"];
     List<Products> products = (List<Products>)ViewData["data"];
     List<int> productQty = (List<int>)ViewData["cartQty"];
-
 }
-
 
 <style>
     .cart-table {
@@ -44,6 +41,7 @@
     .cart-name {
         width: 260px;
     }
+   
 </style>
 
 <section class="cart-grid">
@@ -61,20 +59,18 @@
                         <td class="cart-name"><p class='productName'>@item.Name   </p></td>
                         <td class="cart-price"><p class='productPrice'>$@item.Price</p></td>
                         <td class="cart-qty">
-                            <form action="/Cart/increaseCartQty" method="post">
-                                <input type="hidden" name="increaseQty" value="@item.Id">
+
+                            <form id=@item.Id action="/Cart/increaseCartQty/@item.Id" method="post">
                                 <input type="submit" id=@item.Id name=@item.Id value="+">
                             </form>
-                            <form action="/Cart/decreaseCartQty" method="post">
-                                <input type="hidden" name="decreaseQty" value="@item.Id">
-                                <input type="submit" id=@item.Id name=@item.Id value="-">
+                            <form id=@item.Id action="/Cart/decreaseCartQty/@item.Id" method="post">
+                                <input type="submit" id=@item.Id name=@item.Id value="- ">
                             </form>
-                                <td class="cart-price"><p class='productPrice'>@qty</p></td>
+                        <td class="cart-price"><p class='productPrice'>@qty</p></td>
 
 
                         <td>
-                            <form action="/Cart/Remove" method="post">
-                                <input type="hidden" name="removeItem" value="@item.Id">
+                            <form id=@item.Id action="/Cart/Remove/@item.Id" method="post">
                                 <input type="submit" id=@item.Id name=@item.Id value="Remove">
                             </form>
                         </td>
@@ -84,11 +80,11 @@
             </div>
             i++;
         }
-        
-                <form action="/Cart/ConfirmPurchase" method="post" class=formHide>
-                    <input type="submit" id=Cpurchase name=Cpurchase value="Confirm Purchase">
-                </form>
-            
+
+        <form action="/Cart/ConfirmPurchase" method="post">
+            <input type="submit" id=Cpurchase name=Cpurchase value="Confirm Purchase">
+        </form>
+
     }
 </section>
 
@@ -98,7 +94,7 @@
         <div align="center">
             <span style="font-size:32px">
                 Nothing in your cart!
-                Continue to shopping by clicking <a href="/ProductGallery/Index">here</a>)
+                Continue to shopping by clicking <a href="/ProductGallery">here</a>)
             </span>
         </div>
     }
