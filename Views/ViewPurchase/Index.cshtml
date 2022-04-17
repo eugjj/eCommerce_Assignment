@@ -3,7 +3,7 @@
                 List<ProductKey> pkeys = (List<ProductKey>)ViewData["pkeys"]; 
 }
 
-<span style="float-left; font-size:22px; font-style:italic;"><b>Your Purchases</b></span>
+<span style="margin-left:25px; font-size:22px; font-style:italic;"><b>Your Purchases</b></span>
 <br />
 <br />
 
@@ -16,7 +16,7 @@
                     where item.Id == TID.ProductId
                     select new { item.Name, item.ImageUrl };
 
-        <table align="center">
+        <table align="left" style="padding-left:25px">
         
             <tr>
 
@@ -25,16 +25,18 @@
             
             
                     <td style="padding-bottom:50px">
-                        <div class="box" style="float:left; border: 1px solid black"; text-align: center; padding: 10px 10px; width: 180px; height: 240px; border-radius: 5px;">
-                            <div class="box-product-pic">
+                        <div class="box" style="float:left; border: 1px solid black"; text-align: center; padding: 10px 10px; width: 200px; height: 250px; border-radius: 5px;">
+                            <div class="box-product-pic" align="center">
                                 <img src="@item.ImageUrl" style="width: 150px">
-                                <br/>
+                                <br />
                             </div>
-                        </div>
-                        <div class="box-product-name">
-                            <h4>@item.Name</h4>
-                            <button type="button" class="btn btn-primary">Download</button>
-                            <br/>
+                        
+                            <div class="box-product-name" align="center">
+                                <h4>@item.Name</h4>
+                                <button type="button" class="btn btn-primary">Download</button>
+                                <br />
+                                <br />
+                            </div>
                         </div>
                     </td>
             
@@ -45,14 +47,17 @@
                 }
         
                 <td style="padding-left:30px">
-                    <span style="font-size: 16px; font-weight:bold;">Quantity Bought: @TID.qty</span>
+                    <span style="font-size: 16px; font-weight:bold;">Quantity Bought:</span>
+                                                                    <span>@TID.qty</span>
             
 
                     <br />
 
             
-                    <span style="font-size: 16px; font-weight:bold;">Purchased On: @UnixToDateTime(TID.CreateTimestamp)</span>
+                    <span style="font-size: 16px; font-weight:bold;">Purchased On:</span>
+                                                                    <span>@UnixToDateTime(TID.CreateTimestamp)</span>
 
+                    <br />
                     <br />
             
                     <span style="font-size: 16px; font-weight:bold;">Activation Code:</span>
