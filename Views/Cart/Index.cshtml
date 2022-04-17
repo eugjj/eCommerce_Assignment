@@ -119,7 +119,7 @@
 
                         <td  align="center">
                             <form action="/Cart/Remove" method="post">
-                                <input class="cart-remove" style="background-color:lightsteelblue" type="submit" id="cart-remove" name=cartRemove value="Remove">
+                                <input class="cart-remove" style="background-color:lightgray" type="submit" id="cart-remove" name=cartRemove value="Remove">
                             </form>
                         </td>
 
@@ -130,3 +130,9 @@
         }
     }
 </section>
+<br />
+<br />
+
+<a class="@ViewData["Home"]" asp-area="" asp-controller="ProductGallery" asp-action="Index" >
+    <button style="font-size: 20px; border:none ; border-radius: 4px; background-color:aliceblue">Continue Shopping</button>
+</a>
