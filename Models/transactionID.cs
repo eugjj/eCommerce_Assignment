@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace eCommence_Assignment.Models
+namespace ecommerce_Assignment.Models
 {
     public class transactionID
     {

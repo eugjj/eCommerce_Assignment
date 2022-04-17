@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 
-namespace eCommence_Assignment.Models
+namespace ecommerce_Assignment.Models
 {
     public class DBContext : DbContext
     {

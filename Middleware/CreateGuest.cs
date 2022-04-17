@@ -1,4 +1,4 @@
-﻿using eCommence_Assignment.Models;
+﻿using ecommerce_Assignment.Models;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace eCommence_Assignment.Middleware
+namespace ecommerce_Assignment.Middleware
 {
     public class CreateGuest
     {

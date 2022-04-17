@@ -4,9 +4,6 @@
         document.getElementById("hide").innerHTML = ""
     }
 
-    if (window.location.href.indexOf("Cart") > -1) {
-        document.getElementById("hideCart").innerHTML = ""
-    }
 }
 
 

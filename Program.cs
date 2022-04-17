@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace eCommence_Assignment
+namespace ecommerce_Assignment
 {
     public class Program
     {

@@ -1,4 +1,4 @@
-﻿using eCommence_Assignment.Models;
+﻿using ecommerce_Assignment.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -9,7 +9,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace eCommence_Assignment.Controllers
+namespace ecommerce_Assignment.Controllers
 {
 
     public class CartController : Controller
@@ -44,6 +44,13 @@ namespace eCommence_Assignment.Controllers
                 }
             }
 
+            int count = 0;
+            foreach (int c in qty)
+            {
+                count += c;
+            }
+
+            ViewData["cart"] = count;
             ViewData["cartQty"] = qty;
             ViewData["data"] = products;
             ViewData["cartdetail"] = allitemsInCart;

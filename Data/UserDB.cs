@@ -1,4 +1,4 @@
-﻿using eCommence_Assignment.Models;
+﻿using ecommerce_Assignment.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace eCommence_Assignment
+namespace ecommerce_Assignment
 {
     public class UserDB
     {

@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using eCommence_Assignment.Models;
+using ecommerce_Assignment.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 
-namespace eCommence_Assignment.Controllers
+namespace ecommerce_Assignment.Controllers
 {
     public class ProductGalleryController : Controller
     {

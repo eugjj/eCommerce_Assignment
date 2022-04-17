@@ -8,14 +8,14 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using eCommence_Assignment.Models;
+using ecommerce_Assignment.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using eCommence_Assignment.Data;
-using eCommence_Assignment.Middleware;
+using ecommerce_Assignment.Data;
+using ecommerce_Assignment.Middleware;
 
-namespace eCommence_Assignment
+namespace ecommerce_Assignment
 {
     public class Startup
     {

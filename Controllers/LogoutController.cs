@@ -1,11 +1,11 @@
-﻿using eCommence_Assignment.Models;
+﻿using ecommerce_Assignment.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace eCommence_Assignment.Controllers
+namespace ecommerce_Assignment.Controllers
 {
     public class LogoutController : Controller
     {
