@@ -4,7 +4,6 @@
         document.getElementById("hide").innerHTML = ""
     }
 
-
 }
 
 

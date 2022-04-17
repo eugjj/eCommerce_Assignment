@@ -57,37 +57,37 @@ namespace eCommence_Assignment.Controllers
         }
 
         [HttpPost]
-        public IActionResult Remove(Guid id)
+        public IActionResult Remove(Guid removeItem)
         {
             Cart currentCart = dbContext.Cart.FirstOrDefault(x =>
-            x.ProductId == id);
+            x.ProductId == removeItem);
             dbContext.Cart.Remove(currentCart);
             dbContext.SaveChanges();
 
             return RedirectToAction("Index");
         }
       
-        public IActionResult increaseCartQty(Guid ProductId)
+        public IActionResult increaseCartQty(Guid increaseQty)
         {
             Cart currentCart = dbContext.Cart.FirstOrDefault(x => x.ProductId ==
-            ProductId);
+            increaseQty);
             if (currentCart.ProductQty > 0)
             {
                 currentCart.ProductQty++;
             }
             dbContext.SaveChanges();
-            return View("Index");
+            return RedirectToAction("Index");
         }
-        public IActionResult decreaseCartQty(Guid ProductId)
+        public IActionResult decreaseCartQty(Guid decreaseQty)
         {
             Cart currentCart = dbContext.Cart.FirstOrDefault(x => x.ProductId ==
-            ProductId);
+            decreaseQty);
             if (currentCart.ProductQty > 1)
             {
                 currentCart.ProductQty--;
             }
             dbContext.SaveChanges();
-            return View("Index");
+            return RedirectToAction("Index");
         }
         public IActionResult ConfirmPurchase()
         {
